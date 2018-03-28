@@ -5,8 +5,10 @@ namespace App;
 class Init{
 
 	private $rotas;
+	private $con;
 
 	function __construct(){
+		$this->inicializaDB();
 		$this->inicializarRotas();
 		$urlAcessada=$this->urlDigit();
 		$this->run($urlAcessada);
@@ -50,6 +52,21 @@ class Init{
 
 	public function configurarRotas(array $pRotas){
 		$this->rotas = $pRotas;
+	}
+
+
+	public function inicializaDB(){
+		try{
+			//echo "iniciou db";
+			//conexao com o banco de dados
+			$this->con = new \PDO("mysql:host=localhost; dbname=bdanimalnet;charset=utf8","root","");
+		}catch(PDOException $e){
+			echo "erro".$e->getMessage();
+		}
+	}
+
+	public function getDB(){
+		return $this->con;
 	}
 
 }

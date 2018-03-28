@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\Conexao;
 use App\Models\Dono;
+use App\Init;
+
 //require_once("Conexao.php");
 //require_once("Dono.php");
 
@@ -20,8 +21,8 @@ class ModelDono{
 	const BLANK = 0;
 	
 	//construtor da classe
-	function __construct(){
-		$this->conex=new Conexao();
+	function __construct($pConex){
+		$this->conex=$pConex;
 	}
 
 	function __destruct(){
@@ -32,12 +33,13 @@ class ModelDono{
 	public function buscarUsuario($termo){	
 					
 		//preparando a query do banco de dados
-		$resultado=$this->conex->getConnection()->prepare("select * from dono where nome like ? or sobrenome like ?");
+		$resultado=$this->conex->getConnection()->prepare("select * from dono");
+		//$resultado=$this->conex->getConnection()->prepare("select * from dono where nome like ? or sobrenome like ?");
 		//RESULTADO=CONEXAO->prepare("SENTENCA SQL")
 		
 		//FAZENDO O BIND DOS INDICES NA QUERY COM OS VALORES
-		$resultado->bindValue(1,"%".$termo."%");
-		$resultado->bindValue(2,"%".$termo."%");
+		//$resultado->bindValue(1,"%".$termo."%");
+		//$resultado->bindValue(2,"%".$termo."%");
 		//RESULTADO->bindValue(INDICE, VALOR)
 		
 		//EXECUTANDO A QUERY
