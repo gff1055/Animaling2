@@ -5,7 +5,7 @@ namespace App;
 class Init{
 
 	private $rotas;
-	private $con;
+	public $con;
 
 	function __construct(){
 		$this->inicializaDB();
@@ -31,16 +31,21 @@ class Init{
 			'action'=>'status'
 		);
 
+		echo "<br> inicalizou roras";
+
 		$this->configurarRotas($arrayRotasAux);
 
 	}
 
 	public function run($url){
+		echo "<br> executour rota".$url;
 		foreach($this->rotas as $rota){
 			if($rota['route'] == $url){
 				$classe = 'App\Controllers\\'.ucfirst($rota['controller']);
 				$action = $rota['action'];
 				$controller = new $classe;
+				echo "<br> acessando classe".$classe;
+				echo "<br> acessando action:".$action;
 				$controller->$action();
 			}
 		}
@@ -52,12 +57,13 @@ class Init{
 
 	public function configurarRotas(array $pRotas){
 		$this->rotas = $pRotas;
+		echo "<br> configurou rtas";
 	}
 
 
 	public function inicializaDB(){
 		try{
-			//echo "iniciou db";
+			echo "<br>iniciou db";
 			//conexao com o banco de dados
 			$this->con = new \PDO("mysql:host=localhost; dbname=bdanimalnet;charset=utf8","root","");
 		}catch(PDOException $e){

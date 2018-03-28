@@ -9,7 +9,6 @@ class Busca{
 
 	public function donos(){
 		$modelDono = new ModelDono(Init::getDB());
-		echo Init::getDB();
 		$ocorrencias = $modelDono->buscarUsuario();
 		include_once "../App/Views/buscarusuario.php";
 		

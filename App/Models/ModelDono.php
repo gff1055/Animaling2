@@ -23,6 +23,7 @@ class ModelDono{
 	//construtor da classe
 	function __construct($pConex){
 		$this->conex=$pConex;
+		echo $this->conex;
 	}
 
 	function __destruct(){
