@@ -23,7 +23,6 @@ class ModelDono{
 	//construtor da classe
 	function __construct($pConex){
 		$this->conex=$pConex;
-		echo $this->conex;
 	}
 
 	function __destruct(){
@@ -31,10 +30,11 @@ class ModelDono{
 	}
 
 	
-	public function buscarUsuario($termo){	
+	//public function buscarUsuario($termo){
+	public function buscarUsuario(){	
 					
 		//preparando a query do banco de dados
-		$resultado=$this->conex->getConnection()->prepare("select * from dono");
+		$resultado=$this->conex->prepare("select * from dono");
 		//$resultado=$this->conex->getConnection()->prepare("select * from dono where nome like ? or sobrenome like ?");
 		//RESULTADO=CONEXAO->prepare("SENTENCA SQL")
 		
@@ -51,7 +51,7 @@ class ModelDono{
 		//cada linha é tratada como um objeto
 		$arr = array();
 		if($resultado->rowCount() > 0){
-			while($linha=$resultado->fetch(PDO::FETCH_ASSOC)){
+			while($linha=$resultado->fetch(\PDO::FETCH_ASSOC)){
 				array_push($arr,$linha);
 			}			
 		}
