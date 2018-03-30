@@ -7,9 +7,15 @@ use App\Init;
 
 class Busca{
 
+	public function index(){
+		include_once "../App/Views/buscaIndex.php";
+	}
+
 	public function donos(){
+		$termo = $_POST["termoBusca"];
 		$modelDono = new ModelDono(Init::getDB());
-		$ocorrencias = $modelDono->buscarUsuario();
+		echo $termo;
+		$ocorrencias = $modelDono->buscarUsuario($termo);
 		include_once "../App/Views/buscarusuario.php";
 		
 	}

@@ -14,6 +14,11 @@ class Init{
 	}
 
 	public function inicializarRotas(){
+		$arrayRotasAux['buscaIndex'] = array(
+			'route'=>'/animaling2/public/busca',
+			'controller'=>'busca',
+			'action'=>'index'
+		);
 		$arrayRotasAux['buscaAnimais'] = array(
 			'route'=>'/animaling2/public/busca/animal',
 			'controller'=>'busca',
@@ -30,21 +35,16 @@ class Init{
 			'action'=>'status'
 		);
 
-		echo "<br> inicalizou roras";
-
 		$this->configurarRotas($arrayRotasAux);
 
 	}
 
 	public function run($url){
-		echo "<br> executour rota".$url;
 		foreach($this->rotas as $rota){
 			if($rota['route'] == $url){
 				$classe = 'App\Controllers\\'.ucfirst($rota['controller']);
 				$action = $rota['action'];
 				$controller = new $classe;
-				echo "<br> acessando classe".$classe;
-				echo "<br> acessando action:".$action;
 				$controller->$action();
 			}
 		}
@@ -56,13 +56,11 @@ class Init{
 
 	public function configurarRotas(array $pRotas){
 		$this->rotas = $pRotas;
-		echo "<br> configurou rtas";
 	}
 
 
 	public static function getDB(){
 		try{
-			echo "<br>iniciou db";
 			//conexao com o banco de dados
 			$con = new \PDO("mysql:host=localhost; dbname=bdanimalnet;charset=utf8","root","");
 		}catch(PDOException $e){

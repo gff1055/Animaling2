@@ -30,17 +30,17 @@ class ModelDono{
 	}
 
 	
-	//public function buscarUsuario($termo){
-	public function buscarUsuario(){	
+	public function buscarUsuario($termo){
+	//public function buscarUsuario(){	
 					
 		//preparando a query do banco de dados
-		$resultado=$this->conex->prepare("select * from dono");
-		//$resultado=$this->conex->getConnection()->prepare("select * from dono where nome like ? or sobrenome like ?");
+		//$resultado=$this->conex->prepare("select * from dono");
+		$resultado=$this->conex->prepare("select * from dono where nome like ? or sobrenome like ?");
 		//RESULTADO=CONEXAO->prepare("SENTENCA SQL")
 		
 		//FAZENDO O BIND DOS INDICES NA QUERY COM OS VALORES
-		//$resultado->bindValue(1,"%".$termo."%");
-		//$resultado->bindValue(2,"%".$termo."%");
+		$resultado->bindValue(1,"%".$termo."%");
+		$resultado->bindValue(2,"%".$termo."%");
 		//RESULTADO->bindValue(INDICE, VALOR)
 		
 		//EXECUTANDO A QUERY
@@ -57,7 +57,7 @@ class ModelDono{
 		}
 		
 		else{
-			$arr = self::NO_RESULTS;
+			return 0;
 		}
 		
 		return $arr;
