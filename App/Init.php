@@ -6,6 +6,7 @@ class Init{
 
 	private $rotas;
 	private $con;
+	public static $urlRoot='/animaling2/public';
 
 	function __construct(){
 		$this->inicializarRotas();
@@ -14,23 +15,25 @@ class Init{
 	}
 
 	public function inicializarRotas(){
+		
 		$arrayRotasAux['buscaIndex'] = array(
-			'route'=>'/animaling2/public/busca',
+			'route'=>Init::$urlRoot.'/busca',
 			'controller'=>'busca',
 			'action'=>'index'
 		);
+
 		$arrayRotasAux['buscaAnimais'] = array(
-			'route'=>'/animaling2/public/busca/animal',
+			'route'=>Init::$urlRoot.'/busca/animal',
 			'controller'=>'busca',
 			'action'=>'animais'
 		);
 		$arrayRotasAux['buscaDono'] = array(
-			'route'=>'/animaling2/public/busca/dono',
+			'route'=>Init::$urlRoot.'/busca/dono',
 			'controller'=>'busca',
 			'action'=>'donos'
 		);
 		$arrayRotasAux['buscaStatus'] = array(
-			'route'=>'/animaling2/public/busca/status',
+			'route'=>Init::$urlRoot.'/busca/status',
 			'controller'=>'busca',
 			'action'=>'status'
 		);

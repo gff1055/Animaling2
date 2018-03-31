@@ -14,7 +14,6 @@ class Busca{
 	public function donos(){
 		$termo = $_POST["termoBusca"];
 		$modelDono = new ModelDono(Init::getDB());
-		echo $termo;
 		$ocorrencias = $modelDono->buscarUsuario($termo);
 		include_once "../App/Views/buscarusuario.php";
 		
