@@ -4,9 +4,8 @@
 	<title></title>
 </head>
 <body>
-<form method="Post" action="../public/busca/animal">
-	<input type="text" name="termoBusca"/>
-	<input type="submit" value="Buscar"/>
-</form>
+
+
+<a href="../public/busca/animal"/></a>
 </body>
 </html>

@@ -9,13 +9,24 @@ use App\Init;
 class Busca{
 
 	public function index(){
+		include_once "../App/Views/formCaixaBusca.php";
 		include_once "../App/Views/buscaIndex.php";
+		$termo = $_POST["termoBusca"];
+		$modelDono = new ModelDono(Init::getDB());
+		$ocorrenciasDono = $modelDono->buscarUsuario($termo);
+		include_once "../App/Views/buscarUsuario.php";
+		echo $termo;
+		$modelAnimal = new ModelAnimal(Init::getDB());
+		$ocorrenciasAnimal = $modelAnimal->buscarAnimal($termo);
+		include_once "../App/Views/buscarAnimal.php";
+
 	}
 
 	public function donos(){
 		$termo = $_POST["termoBusca"];
 		$modelDono = new ModelDono(Init::getDB());
 		$ocorrenciasDono = $modelDono->buscarUsuario($termo);
+		include_once "../App/Views/formCaixaBusca.php";
 		include_once "../App/Views/buscarUsuario.php";
 		
 	}
@@ -25,6 +36,7 @@ class Busca{
 		echo $termo;
 		$modelAnimal = new ModelAnimal(Init::getDB());
 		$ocorrenciasAnimal = $modelAnimal->buscarAnimal($termo);
+		include_once "../App/Views/formCaixaBusca.php";
 		include_once "../App/Views/buscarAnimal.php";
 	}
 
