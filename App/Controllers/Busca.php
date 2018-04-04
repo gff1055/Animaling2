@@ -13,21 +13,24 @@ class Busca{
 		include_once "../App/Views/buscaIndex.php";
 		$termo = $_POST["termoBusca"];
 		$modelDono = new ModelDono(Init::getDB());
-		$ocorrenciasDono = $modelDono->buscarUsuario($termo);
-		include_once "../App/Views/buscarUsuario.php";
-		echo $termo;
+		$ocorrenciasDono = $modelDono->buscarDono($termo);
+		if($ocorrenciasDono)
+			include_once "../App/Views/buscarDono.php";
+		
 		$modelAnimal = new ModelAnimal(Init::getDB());
+
 		$ocorrenciasAnimal = $modelAnimal->buscarAnimal($termo);
-		include_once "../App/Views/buscarAnimal.php";
+		if($ocorrenciasAnimal)
+			include_once "../App/Views/buscarAnimal.php";
 
 	}
 
 	public function donos(){
 		$termo = $_POST["termoBusca"];
 		$modelDono = new ModelDono(Init::getDB());
-		$ocorrenciasDono = $modelDono->buscarUsuario($termo);
+		$ocorrenciasDono = $modelDono->buscarDono($termo);
 		include_once "../App/Views/formCaixaBusca.php";
-		include_once "../App/Views/buscarUsuario.php";
+		include_once "../App/Views/buscarDono.php";
 		
 	}
 

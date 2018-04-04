@@ -30,12 +30,80 @@ class ModelDono{
 	}
 
 	
-	public function buscarUsuario($termo){
+	public function buscarDono($termo){
 	//public function buscarUsuario(){	
 					
 		//preparando a query do banco de dados
 		//$resultado=$this->conex->prepare("select * from dono");
-		$resultado=$this->conex->prepare("select * from dono where nome like ? or sobrenome like ?");
+		$resultado=$this->conex->prepare("select * from dono where nome like ? or sobrenome like ? limit 3");
+		//RESULTADO=CONEXAO->prepare("SENTENCA SQL")
+		
+		//FAZENDO O BIND DOS INDICES NA QUERY COM OS VALORES
+		$resultado->bindValue(1,"%".$termo."%");
+		$resultado->bindValue(2,"%".$termo."%");
+		//RESULTADO->bindValue(INDICE, VALOR)
+		
+		//EXECUTANDO A QUERY
+		$resultado->execute();
+		//RESULTADO->execute();
+
+		//resgatando o resultado da consulta linha a linha(fetch)
+		//cada linha é tratada como um objeto
+		$arr = array();
+		if($resultado->rowCount() > 0){
+			while($linha=$resultado->fetch(\PDO::FETCH_ASSOC)){
+				array_push($arr,$linha);
+			}			
+		}
+		
+		else{
+			return 0;
+		}
+		
+		return $arr;
+	}
+
+	public function buscaEspecificaDono($termo){
+	//public function buscarUsuario(){	
+					
+		//preparando a query do banco de dados
+		//$resultado=$this->conex->prepare("select * from dono");
+		$resultado=$this->conex->prepare("select * from dono where nome like ? or sobrenome like ? limit 3");
+		//RESULTADO=CONEXAO->prepare("SENTENCA SQL")
+		
+		//FAZENDO O BIND DOS INDICES NA QUERY COM OS VALORES
+		$resultado->bindValue(1,"%".$termo."%");
+		$resultado->bindValue(2,"%".$termo."%");
+		//RESULTADO->bindValue(INDICE, VALOR)
+		
+		//EXECUTANDO A QUERY
+		$resultado->execute();
+		//RESULTADO->execute();
+
+		//resgatando o resultado da consulta linha a linha(fetch)
+		//cada linha é tratada como um objeto
+		$arr = array();
+		if($resultado->rowCount() > 0){
+			while($linha=$resultado->fetch(\PDO::FETCH_ASSOC)){
+				array_push($arr,$linha);
+			}			
+		}
+		
+		else{
+			return 0;
+		}
+		
+		return $arr;
+	}
+
+
+
+	public function buscaGeralDono($termo){
+	//public function buscarUsuario(){	
+					
+		//preparando a query do banco de dados
+		//$resultado=$this->conex->prepare("select * from dono");
+		$resultado=$this->conex->prepare("select * from dono where nome like ? or sobrenome like ? limit 3");
 		//RESULTADO=CONEXAO->prepare("SENTENCA SQL")
 		
 		//FAZENDO O BIND DOS INDICES NA QUERY COM OS VALORES
