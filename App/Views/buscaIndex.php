@@ -4,7 +4,7 @@
 	<title></title>
 </head>
 <body>
-<form method="Post" action="../public/busca/dono">
+<form method="Post" action="../public/busca/animal">
 	<input type="text" name="termoBusca"/>
 	<input type="submit" value="Buscar"/>
 </form>

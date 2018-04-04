@@ -10,15 +10,12 @@ use App\Init
 
 <?php
 
-if(!$ocorrencias){
+if(!$ocorrenciasAnimal){
 	echo "sem ocorrencias";
 }
 else{
-	foreach($ocorrencias as $dono){
-		echo 
-		"<br><b>Nome</b>:".$dono['nome'].
-		"<br><b>Sobrenome</b>:".$dono['sobrenome'].
-		"<br><br>";
+	foreach($ocorrenciasAnimal as $animal){
+		echo "<br><b>Nome</b>:".$animal['nomeAnimal']." (".$animal['especie'].")<br><br>";
 
 	}
 }
