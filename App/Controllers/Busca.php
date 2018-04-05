@@ -9,19 +9,27 @@ use App\Init;
 class Busca{
 
 	public function index(){
+		
 		include_once "../App/Views/formCaixaBusca.php";
 		include_once "../App/Views/buscaIndex.php";
+		
 		$termo = $_POST["termoBusca"];
+		$flagNada = 0;
+		
 		$modelDono = new ModelDono(Init::getDB());
-		$ocorrenciasDono = $modelDono->buscarDono($termo);
-		if($ocorrenciasDono)
-			include_once "../App/Views/buscarDono.php";
+		$ocorrenciasDono = $modelDono->buscarPrimeirosDonos($termo);
+		if($ocorrenciasDono) include_once "../App/Views/buscarDono.php";
+		else $flagNada+=1;
 		
 		$modelAnimal = new ModelAnimal(Init::getDB());
-
-		$ocorrenciasAnimal = $modelAnimal->buscarAnimal($termo);
+		$ocorrenciasAnimal = $modelAnimal->buscarPrimeirosAnimais($termo);
 		if($ocorrenciasAnimal)
 			include_once "../App/Views/buscarAnimal.php";
+		else $flagNada+=1;
+
+		if($flagNada == 2)
+			include_once "../App/Views/buscaSemResultados.php";
+
 
 	}
 
