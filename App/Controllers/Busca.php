@@ -9,53 +9,65 @@ use App\Init;
 
 class Busca{
 
+	public $cab;
+	function __construct(){
+		$this->cab = new Cabecalho();
+	}
+
 	public function index(){
 
-		$cab = new Cabecalho();
-
-		$cab->abertura("Busca");
+		$this->cab->abertura("Busca");
 		
 		include_once "../App/Views/formCaixaBusca.php";
 		include_once "../App/Views/buscaIndex.php";
 		
-		$termo = $_POST["termoBusca"];
-		$flagNada = 0;
+		if(!empty($_POST["termoBusca"])){
+			$termo = $_POST["termoBusca"];
+			$existe = 0;
 		
-		$modelDono = new ModelDono(Init::getDB());
-		$ocorrenciasDono = $modelDono->buscarPrimeirosDonos($termo);
-		if($ocorrenciasDono) include_once "../App/Views/buscarDono.php";
-		else $flagNada+=1;
+			$modelDono = new ModelDono(Init::getDB());
+			$ocorrenciasDono = $modelDono->buscarPrimeirosDonos($termo);
+			if($ocorrenciasDono){
+				include_once "../App/Views/buscarDono.php";
+				$existe+=1;
+			}
 		
-		$modelAnimal = new ModelAnimal(Init::getDB());
-		$ocorrenciasAnimal = $modelAnimal->buscarPrimeirosAnimais($termo);
-		if($ocorrenciasAnimal)
-			include_once "../App/Views/buscarAnimal.php";
-		else $flagNada+=1;
+			$modelAnimal = new ModelAnimal(Init::getDB());
+			$ocorrenciasAnimal = $modelAnimal->buscarPrimeirosAnimais($termo);
+			if($ocorrenciasAnimal){
+				include_once "../App/Views/buscarAnimal.php";
+				$existe+=1;
+			}
 
-		if($flagNada == 2)
-			include_once "../App/Views/buscaSemResultados.php";
+			if(!$existe)
+				include_once "../App/Views/buscaSemResultados.php";
+		}
 
-		$cab->fechamento();
-
-
+		$this->cab->fechamento();
 	}
 
 	public function donos(){
-		$termo = $_POST["termoBusca"];
-		$modelDono = new ModelDono(Init::getDB());
-		$ocorrenciasDono = $modelDono->buscarDono($termo);
+		$this->cab->abertura("Busca por donos");
 		include_once "../App/Views/formCaixaBusca.php";
-		include_once "../App/Views/buscarDono.php";
-		
+		if(!empty($_POST["termoBusca"])){
+			$termo = $_POST["termoBusca"];
+			$modelDono = new ModelDono(Init::getDB());
+			$ocorrenciasDono = $modelDono->buscarTodosDonos($termo);
+			include_once "../App/Views/buscarDono.php";
+		}
+		$this->cab->fechamento();
 	}
 
 	public function animais(){
-		$termo = $_POST["termoBusca"];
-		echo $termo;
-		$modelAnimal = new ModelAnimal(Init::getDB());
-		$ocorrenciasAnimal = $modelAnimal->buscarAnimal($termo);
+		$this->cab->abertura("Busca por animais");
 		include_once "../App/Views/formCaixaBusca.php";
-		include_once "../App/Views/buscarAnimal.php";
+		if(!empty($_POST["termoBusca"])){
+			$termo = $_POST["termoBusca"];
+			$modelAnimal = new ModelAnimal(Init::getDB());
+			$ocorrenciasAnimal = $modelAnimal->buscarTodosAnimais($termo);
+			include_once "../App/Views/buscarAnimal.php";
+		}
+		$this->cab->fechamento();
 	}
 
 	public function status(){
