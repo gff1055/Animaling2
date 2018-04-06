@@ -4,11 +4,16 @@ namespace App\Controllers;
 
 use App\Models\ModelDono;
 use App\Models\ModelAnimal;
+use App\Views\Cabecalho;
 use App\Init;
 
 class Busca{
 
 	public function index(){
+
+		$cab = new Cabecalho();
+
+		$cab->abertura("Busca");
 		
 		include_once "../App/Views/formCaixaBusca.php";
 		include_once "../App/Views/buscaIndex.php";
@@ -29,6 +34,8 @@ class Busca{
 
 		if($flagNada == 2)
 			include_once "../App/Views/buscaSemResultados.php";
+
+		$cab->fechamento();
 
 
 	}
