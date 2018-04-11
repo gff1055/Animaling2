@@ -23,12 +23,12 @@ class Init{
 		);
 
 		$arrayRotasAux['buscaAnimais'] = array(
-			'route'=>Init::$urlRoot.'/busca/animais',
+			'route'=>Init::$urlRoot.'/busca/animal',
 			'controller'=>'busca',
 			'action'=>'animais'
 		);
 		$arrayRotasAux['buscaDono'] = array(
-			'route'=>Init::$urlRoot.'/busca/donos',
+			'route'=>Init::$urlRoot.'/busca/dono',
 			'controller'=>'busca',
 			'action'=>'donos'
 		);
