@@ -22,6 +22,12 @@ class Init{
 			'action'=>'index'
 		);
 
+		/*$arrayRotasAux['buscaTudo'] = array(
+			'route'=>Init::$urlRoot.'/busca/all',
+			'controller'=>'busca',
+			'action'=>'all'
+		);
+
 		$arrayRotasAux['buscaAnimais'] = array(
 			'route'=>Init::$urlRoot.'/busca/animal',
 			'controller'=>'busca',
@@ -36,7 +42,7 @@ class Init{
 			'route'=>Init::$urlRoot.'/busca/status',
 			'controller'=>'busca',
 			'action'=>'status'
-		);
+		);*/
 
 		$this->configurarRotas($arrayRotasAux);
 

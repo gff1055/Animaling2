@@ -11,22 +11,24 @@ class Busca{
 
 	public function index(){
 
-		/*//$cab = new Cabecalho();
+		//$cab = new Cabecalho();
 
 		$ocorrenciasDono = 0;
 
 		//include_once "../App/Views/formCaixaBusca.php";
 		//include_once "../App/Views/buscaIndex.php";
-		if(!empty($_POST["pesquisa"])){
-			$termo = $_POST["pesquisa"];
+		$termo = $_POST["pesquisa"];
+		$tipo = $_POST["tipoPesquisa"];
 		
 		//$flagNada = 0;
-		
+		if($tipo=="Donos"){
 			$modelDono = new ModelDono(Init::getDB());
 			$ocorrenciasDono = $modelDono->buscarPrimeirosDonos($termo);
-			
-		}*/
-		include_once "../App/Views/buscaPrincipal.php";
+		}
+
+		else echo "OPA...";
+
+		include_once "../App/Views/buscaIndex.php";
 		/*else $flagNada+=1;
 		
 		$modelAnimal = new ModelAnimal(Init::getDB());
@@ -40,6 +42,14 @@ class Busca{
 
 
 
+	}
+
+	public function all(){
+		$termo = $_POST["pesquisa"];
+		$modelDono = new ModelDono(Init::getDB());
+		$ocorrencias = $modelDono->buscarTodosDonos($termo);
+		//include_once "../App/Views/buscarStatus.php";
+		include_once "../App/Views/buscarDono.php";
 	}
 
 	public function donos(){
