@@ -17,6 +17,9 @@ else
 <form method="Post" action="">
 	<input type="text" name="pesquisa"/>
 	<input type="submit" value="Buscar"/>
+	<input type="radio" name="tipoPesquisa" value="Animais">
+	<input type="radio" name="tipoPesquisa" value="Donos">
+	<input type="radio" name="tipoPesquisa" value="Posts">
 </form>
 
 <?php

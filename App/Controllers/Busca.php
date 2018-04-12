@@ -11,7 +11,7 @@ class Busca{
 
 	public function index(){
 
-		//$cab = new Cabecalho();
+		/*//$cab = new Cabecalho();
 
 		$ocorrenciasDono = 0;
 
@@ -25,8 +25,8 @@ class Busca{
 			$modelDono = new ModelDono(Init::getDB());
 			$ocorrenciasDono = $modelDono->buscarPrimeirosDonos($termo);
 			
-		}
-		include_once "../App/Views/buscaPrincipal.php";
+		}*/
+		include_once "../App/Views/buscaIndex.php";
 		/*else $flagNada+=1;
 		
 		$modelAnimal = new ModelAnimal(Init::getDB());
@@ -43,16 +43,15 @@ class Busca{
 	}
 
 	public function donos(){
-		$termo = $_POST["termoBusca"];
+		$termo = $_POST["pesquisa"];
 		$modelDono = new ModelDono(Init::getDB());
-		$ocorrenciasDono = $modelDono->buscarDono($termo);
-		include_once "../App/Views/formCaixaBusca.php";
+		$ocorrenciasDono = $modelDono->buscarTodosDonos($termo);
 		include_once "../App/Views/buscarDono.php";
 		
 	}
 
 	public function animais(){
-		$termo = $_POST["termoBusca"];
+		$termo = $_POST["pesquisa"];
 		echo $termo;
 		$modelAnimal = new ModelAnimal(Init::getDB());
 		$ocorrenciasAnimal = $modelAnimal->buscarAnimal($termo);
@@ -61,7 +60,7 @@ class Busca{
 	}
 
 	public function status(){
-		echo "Eu sou a busca por status";
+		
 	}
 
 
