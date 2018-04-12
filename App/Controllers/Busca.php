@@ -26,7 +26,7 @@ class Busca{
 			$ocorrenciasDono = $modelDono->buscarPrimeirosDonos($termo);
 			
 		}*/
-		include_once "../App/Views/buscaIndex.php";
+		include_once "../App/Views/buscaPrincipal.php";
 		/*else $flagNada+=1;
 		
 		$modelAnimal = new ModelAnimal(Init::getDB());

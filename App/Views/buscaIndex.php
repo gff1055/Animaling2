@@ -16,7 +16,7 @@ else
 </head>
 <body>
 
-<form method="Post" action="../public/busca/dono">
+<form method="Post" action="../public/busca/">
 	<input type="text" name="pesquisa"/>
 	<input type="submit" value="Buscar"/>
 	<input type="hidden" name="tipoPesquisa" value="Donos">
