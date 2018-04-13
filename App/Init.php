@@ -22,6 +22,12 @@ class Init{
 			'action'=>'index'
 		);
 
+		$arrayRotasAux['buscaTemp'] = array(
+			'route'=>Init::$urlRoot.'/',
+			'controller'=>'busca',
+			'action'=>'pagina'
+		);
+
 		/*$arrayRotasAux['buscaTudo'] = array(
 			'route'=>Init::$urlRoot.'/busca/all',
 			'controller'=>'busca',

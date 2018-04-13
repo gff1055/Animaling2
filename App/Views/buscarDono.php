@@ -15,12 +15,12 @@ else
 <body>
 
 <form method="Post" action="">
-	<input type="text" name="pesquisa"/>
+	<input type="text" name="pesquisa" value="<?php echo $_POST['pesquisa']?>" />
 	<input type="submit" value="Buscar"/>
 	<br> Pesquisar por: &nbsp 
 	<input type="radio" name="tipoPesquisa" value="Animais">Animais
 	<input type="radio" name="tipoPesquisa" value="Donos">Donos
-	<input type="radio" name="tipoPesquisa" value="Posts">Posts
+	<input type="radio" name="tipoPesquisa" value="Posts" checked>Posts
 </form>
 
 <?php

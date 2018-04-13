@@ -9,12 +9,15 @@ use App\Init;
 
 class Busca{
 
+	public function pagina(){
+		include_once "../App/Views/pagina.php";
+	}
+
 	public function index(){
 
 		//$cab = new Cabecalho();
 
-		$ocorrenciasDono = 0;
-
+		
 		//include_once "../App/Views/formCaixaBusca.php";
 		//include_once "../App/Views/buscaIndex.php";
 		$termo = $_POST["pesquisa"];
@@ -24,11 +27,12 @@ class Busca{
 		if($tipo=="Donos"){
 			$modelDono = new ModelDono(Init::getDB());
 			$ocorrenciasDono = $modelDono->buscarPrimeirosDonos($termo);
+			include_once "../App/Views/buscarDono.php";
 		}
 
 		else echo "OPA...";
 
-		include_once "../App/Views/buscaIndex.php";
+
 		/*else $flagNada+=1;
 		
 		$modelAnimal = new ModelAnimal(Init::getDB());
