@@ -26,8 +26,14 @@ class Busca{
 		//$flagNada = 0;
 		if($tipo=="Donos"){
 			$modelDono = new ModelDono(Init::getDB());
-			$ocorrenciasDono = $modelDono->buscarPrimeirosDonos($termo);
+			$ocorrenciasDono = $modelDono->buscarTodosDonos($termo);
 			include_once "../App/Views/buscarDono.php";
+		}
+
+		elseif($tipo=="Animais"){
+			$modelAnimal = new ModelAnimal(Init::getDB());
+			$ocorrenciasAnimal = $modelAnimal->buscarTodosAnimais($termo);
+			include_once "../App/Views/buscarAnimal.php";
 		}
 
 		else echo "OPA...";

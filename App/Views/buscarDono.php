@@ -19,8 +19,8 @@ else
 	<input type="submit" value="Buscar"/>
 	<br> Pesquisar por: &nbsp 
 	<input type="radio" name="tipoPesquisa" value="Animais">Animais
-	<input type="radio" name="tipoPesquisa" value="Donos">Donos
-	<input type="radio" name="tipoPesquisa" value="Posts" checked>Posts
+	<input type="radio" name="tipoPesquisa" value="Donos" checked>Donos
+	<input type="radio" name="tipoPesquisa" value="Posts">Posts
 </form>
 
 <?php
