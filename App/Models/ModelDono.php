@@ -41,13 +41,10 @@ class ModelDono{
 	public function buscarTodosDonos($termo){
 		$query = "select * from dono where nome like ? or sobrenome like ?";
 		return $this->buscarDono($termo, $query);	
-					
 	}
 
 	
-	private function buscarDono($termo, $query){
-	//public function buscarUsuario(){	
-					
+	public function buscarDono($termo, $query){
 		//preparando a query do banco de dados
 		//$resultado=$this->conex->prepare("select * from dono");
 		$resultado=$this->conex->prepare($query);

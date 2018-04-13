@@ -25,17 +25,34 @@ else
 </form>
 
 <?php
+$possuiResultados = 0;
 if(!empty($_POST['pesquisa'])){
 	if($ocorrenciasDono){
+		echo "<h3>Donos</h3>";
 		foreach($ocorrenciasDono as $dono){
 			echo 
 			"<br><b>Nome</b>:".$dono['nome'].
 			"<br><b>Sobrenome</b>:".$dono['sobrenome'].
 			"<br><br>";
 		}
+		$possuiResultados+=1;
 	}
-	else{
-		echo "sem ocorrencias";
+	if($ocorrenciasAnimal){
+		echo "<h3>Animais</h3>";
+		foreach($ocorrenciasAnimal as $animal){
+			echo
+			"<br><b>Nome</b>:".$animal['nomeAnimal']." (".$animal['especie']." de ".$animal['nomeDono'].")<br><br>";
+		}
+		$possuiResultados+=1;
+	}
+	/*if($ocorrenciasPosts){
+		foreach($ocorrenciasPosts as $postagem){
+			echo "<br><b>".$postagem['nomeAnimal']."</b><br>".$postagem['acontAgora']."<br><br>";
+		}
+		$possuiResultados+=1;
+	}*/
+	if (!$possuiResultados){
+		echo "NA FORAM ACHADOS RESULTADOS";
 	}
 }
 ?>

@@ -18,25 +18,38 @@ else
 	<input type="text" name="pesquisa" value="<?php echo $_POST['pesquisa']?>" />
 	<input type="submit" value="Buscar"/>
 	<br> Pesquisar por: &nbsp 
-	<input type="radio" name="tipoPesquisa" value="Animais" checked>Animais
+	<input type="radio" name="tipoPesquisa" value="Animais">Animais
 	<input type="radio" name="tipoPesquisa" value="Donos">Donos
-	<input type="radio" name="tipoPesquisa" value="Posts">Posts
+	<input type="radio" name="tipoPesquisa" value="Posts" checked>Posts
 </form>
 
 <?php
 if(!empty($_POST['pesquisa'])){
-	if($ocorrenciasAnimal){
-		foreach($ocorrenciasAnimal as $animal){
-			echo
-			"<br><b>Nome</b>:".$animal['nomeAnimal']." (".$animal['especie']." de ".$animal['nomeDono'].")<br><br>";
+	if($ocorrenciasPosts){
+		foreach($ocorrenciasPosts as $postagem){
+			echo "<br><b>".$postagem['nomeAnimal']."</b><br>".$postagem['acontAgora']."<br><br>";
 		}
 	}
 	else{
 		echo "sem ocorrencias";
-
 	}
-
 }
 ?>
 </body>
 </html>
+
+<?php
+
+/*if(!$ocorrenciasStatus){
+	echo "sem ocorrencias";
+}
+else{
+	foreach($ocorrenciasStatus as $status){
+		echo 
+		"<br><b>:".$status['nomeAnimal']."</b>".$status['acontAgora']."<br><br>";
+
+	}
+}
+*/
+
+?>

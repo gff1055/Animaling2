@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\ModelDono;
 use App\Models\ModelAnimal;
-//use App\Views\Cabecalho;
+use App\Models\ModelStatus;
 use App\Init;
 
 class Busca{
@@ -24,7 +24,19 @@ class Busca{
 		$tipo = $_POST["tipoPesquisa"];
 		
 		//$flagNada = 0;
-		if($tipo=="Donos"){
+		if($tipo=="Geral"){
+
+			$modelDono = new ModelDono(Init::getDB());
+			$ocorrenciasDono = $modelDono->buscarPrimeirosDonoS($termo);
+			
+
+			$modelAnimal = new ModelAnimal(Init::getDB());
+			$ocorrenciasAnimal = $modelAnimal->buscarPrimeirosAnimais($termo);
+
+			include_once "../App/Views/buscaGeral.php";
+		}
+
+		elseif($tipo=="Donos"){
 			$modelDono = new ModelDono(Init::getDB());
 			$ocorrenciasDono = $modelDono->buscarTodosDonos($termo);
 			include_once "../App/Views/buscarDono.php";
@@ -34,6 +46,12 @@ class Busca{
 			$modelAnimal = new ModelAnimal(Init::getDB());
 			$ocorrenciasAnimal = $modelAnimal->buscarTodosAnimais($termo);
 			include_once "../App/Views/buscarAnimal.php";
+		}
+
+		elseif($tipo=="Posts"){
+			$modelPosts = new ModelStatus(Init::getDB());
+			$ocorrenciasPosts = $modelPosts->buscarStatus($termo);
+			include_once "../App/Views/buscarPosts.php";	
 		}
 
 		else echo "OPA...";

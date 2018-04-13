@@ -190,13 +190,11 @@ class ModelAnimal
 			from animal as a
 			inner join dono as d
 			on d.codigo = a.codigoDono and a.nome like ?";
-		return $this->buscarAnimal($termo, $query);	
-					
+		return $this->buscarAnimal($termo, $query);					
 	}
 
-	private function buscarAnimal($termo, $query)
+	public function buscarAnimal($termo, $query)
 	{
-		
 		$resultado=$this->conex->prepare($query);
 		//preparando a query do banco de dados
 
