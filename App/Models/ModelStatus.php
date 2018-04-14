@@ -30,16 +30,11 @@ class ModelStatus{
 		try{
 
 			$resultado=$this->conex->getconnection()->prepare("
-				select
-					a.nome as nomeAnimal, s.conteudo as conteudo, s.dataStatus as dataStatus 
-				from
-					animal as a
-				inner join
-					status as s 
-				on
-					a.codigo=s.codigoAnimal
-				where
-					s.codigoAnimal=?");
+				select a.nome as nomeAnimal, s.conteudo as conteudo, s.dataStatus as dataStatus 
+				from animal as a
+				inner join status as s 
+				on a.codigo=s.codigoAnimal
+				where s.codigoAnimal=?");
 			$resultado->bindValue(1,$codigoAnimal);
 			$resultado->execute();
 
@@ -53,9 +48,7 @@ class ModelStatus{
 
 				return $todosStatus;
 			}
-			
-			else
-				return 0;
+			else return 0;
 		
 		}catch(PDOException $e){
 			return  "ERRO: ".$erro->getmessage();
@@ -110,8 +103,7 @@ class ModelStatus{
 	}
 
 	
-	public function excluirStatus($pStatus)
-	{
+	public function excluirStatus($pStatus){
 
 		try{
 
@@ -129,19 +121,28 @@ class ModelStatus{
 	}
 	
 
-	public function buscarStatus($termo)
-	{
-		$resultado=$this->conex->prepare("
-				select
-					a.nome as nomeAnimal, s.conteudo as acontAgora
-				from
-					animal as a
-				inner join
-					status as s
-				on
-					a.codigo = s.codigoAnimal
-				where
-					a.nome like ? or s.conteudo like ?");
+	public function buscarPrincipaisStatus($termo){
+		$query ="select a.nome as nomeAnimal, s.conteudo as acontAgora
+		from animal as a
+		inner join status as s
+		on a.codigo = s.codigoAnimal
+		where a.nome like ? or s.conteudo like ?";
+		return $this->buscarStatus($termo, $query);
+	}
+
+	public function buscarTodosStatus($termo){
+		$query =
+		"select a.nome as nomeAnimal, s.conteudo as acontAgora
+		from animal as a
+		inner join status as s
+		on a.codigo = s.codigoAnimal
+		where a.nome like ? or s.conteudo like ? limit 3";
+		return $this->buscarStatus($termo, $query);	
+	}
+
+
+	private function buscarStatus($termo,$query){
+		$resultado=$this->conex->prepare($query);
 		//preparando a query do banco de dados
 
 		$resultado->bindValue(1,"%".$termo."%");

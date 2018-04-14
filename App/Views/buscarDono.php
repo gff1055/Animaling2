@@ -17,7 +17,8 @@ else
 <form method="Post" action="">
 	<input type="text" name="pesquisa" value="<?php echo $_POST['pesquisa']?>" />
 	<input type="submit" value="Buscar"/>
-	<br> Pesquisar por: &nbsp 
+	<br> Pesquisar por: &nbsp
+	<input type="radio" name="tipoPesquisa" value="Tudo">Tudo
 	<input type="radio" name="tipoPesquisa" value="Animais">Animais
 	<input type="radio" name="tipoPesquisa" value="Donos" checked>Donos
 	<input type="radio" name="tipoPesquisa" value="Posts">Posts

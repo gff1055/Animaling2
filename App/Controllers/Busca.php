@@ -24,14 +24,17 @@ class Busca{
 		$tipo = $_POST["tipoPesquisa"];
 		
 		//$flagNada = 0;
-		if($tipo=="Geral"){
+		if($tipo=="Tudo"){
 
 			$modelDono = new ModelDono(Init::getDB());
-			$ocorrenciasDono = $modelDono->buscarPrimeirosDonoS($termo);
+			$ocorrenciasDono = $modelDono->buscarPrincipaisDonoS($termo);
 			
 
 			$modelAnimal = new ModelAnimal(Init::getDB());
-			$ocorrenciasAnimal = $modelAnimal->buscarPrimeirosAnimais($termo);
+			$ocorrenciasAnimal = $modelAnimal->buscarPrincipaisAnimais($termo);
+
+			$modelPost = new ModelStatus(Init::getDB());
+			$ocorrenciasPost = $modelPost->buscarPrincipaisStatus($termo);
 
 			include_once "../App/Views/buscaGeral.php";
 		}
@@ -50,7 +53,7 @@ class Busca{
 
 		elseif($tipo=="Posts"){
 			$modelPosts = new ModelStatus(Init::getDB());
-			$ocorrenciasPosts = $modelPosts->buscarStatus($termo);
+			$ocorrenciasPosts = $modelPosts->buscarTodosStatus($termo);
 			include_once "../App/Views/buscarPosts.php";	
 		}
 

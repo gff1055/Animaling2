@@ -31,7 +31,7 @@ class ModelDono{
 
 	
 
-	public function buscarPrimeirosDonos($termo){
+	public function buscarPrincipaisDonos($termo){
 		$query = "select * from dono where nome like ? or sobrenome like ? limit 3";
 		return $this->buscarDono($termo, $query);	
 				

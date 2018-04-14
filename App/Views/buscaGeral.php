@@ -16,9 +16,10 @@ else
 <body>
 
 <form method="Post" action="">
-	<input type="text" name="pesquisa"/>
+	<input type="text" name="pesquisa" value="<?php echo $_POST['pesquisa']?>"/>
 	<input type="submit" value="Buscar"/>
-	<br> Pesquisar por: &nbsp 
+	<br> Pesquisar por: &nbsp
+	<input type="radio" name="tipoPesquisa" value="Tudo" checked>Tudo 
 	<input type="radio" name="tipoPesquisa" value="Animais">Animais
 	<input type="radio" name="tipoPesquisa" value="Donos">Donos
 	<input type="radio" name="tipoPesquisa" value="Posts">Posts
@@ -45,12 +46,13 @@ if(!empty($_POST['pesquisa'])){
 		}
 		$possuiResultados+=1;
 	}
-	/*if($ocorrenciasPosts){
-		foreach($ocorrenciasPosts as $postagem){
+	if($ocorrenciasPost){
+		echo "<h3>Posts</h3>";
+		foreach($ocorrenciasPost as $postagem){
 			echo "<br><b>".$postagem['nomeAnimal']."</b><br>".$postagem['acontAgora']."<br><br>";
 		}
 		$possuiResultados+=1;
-	}*/
+	}
 	if (!$possuiResultados){
 		echo "NA FORAM ACHADOS RESULTADOS";
 	}

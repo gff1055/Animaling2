@@ -172,7 +172,7 @@ class ModelAnimal
 	
 	
 
-	public function buscarPrimeirosAnimais($termo){
+	public function buscarPrincipaisAnimais($termo){
 		$query = "
 			select a.nome as nomeAnimal, especie, d.nome as nomeDono
 			from animal as a
