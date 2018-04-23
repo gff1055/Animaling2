@@ -66,9 +66,11 @@ class Init{
 				$controller->$action();
 			}
 		}
-		if(!$existe){
-			$this->getParamRoute($url);
-		}
+		/*if(!$existe){
+			$rota = $this->getParamRoute($url);
+			$classe = 'App\Controllers\ControllerDono');
+			$action = 
+		}*/
 	}
 
 	public function urlDigit(){
@@ -78,7 +80,7 @@ class Init{
 	public function getParamRoute($url){
 		echo "<br>".$url."<br>";
 		$url = explode ("/", $url);
-		var_dump($url); //veja como fica a saída
+		return $url; //veja como fica a saída
 	}
 
 	public function configurarRotas(array $pRotas){
