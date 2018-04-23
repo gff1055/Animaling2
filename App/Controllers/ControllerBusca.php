@@ -7,7 +7,7 @@ use App\Models\ModelAnimal;
 use App\Models\ModelStatus;
 use App\Init;
 
-class Busca{
+class ControllerBusca{
 
 	public function pagina(){
 		include_once "../App/Views/pagina.php";

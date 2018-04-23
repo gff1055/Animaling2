@@ -18,15 +18,16 @@ class Init{
 		
 		$arrayRotasAux['buscaIndex'] = array(
 			'route'=>Init::$urlRoot.'/busca',
-			'controller'=>'busca',
+			'controller'=>'controllerBusca',
 			'action'=>'index'
 		);
 
 		$arrayRotasAux['buscaTemp'] = array(
 			'route'=>Init::$urlRoot.'/',
-			'controller'=>'busca',
+			'controller'=>'controllerBusca',
 			'action'=>'pagina'
 		);
+
 
 		/*$arrayRotasAux['buscaTudo'] = array(
 			'route'=>Init::$urlRoot.'/busca/all',
@@ -55,18 +56,29 @@ class Init{
 	}
 
 	public function run($url){
+		$existe = 0;
 		foreach($this->rotas as $rota){
 			if($rota['route'] == $url){
+				$existe=1;
 				$classe = 'App\Controllers\\'.ucfirst($rota['controller']);
 				$action = $rota['action'];
 				$controller = new $classe;
 				$controller->$action();
 			}
 		}
+		if(!$existe){
+			$this->getParamRoute($url);
+		}
 	}
 
 	public function urlDigit(){
 		return parse_url($_SERVER["REQUEST_URI"],PHP_URL_PATH);
+	}
+
+	public function getParamRoute($url){
+		echo "<br>".$url."<br>";
+		$url = explode ("/", $url);
+		var_dump($url); //veja como fica a saída
 	}
 
 	public function configurarRotas(array $pRotas){
