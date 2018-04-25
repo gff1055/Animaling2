@@ -21,23 +21,13 @@ else
 	<br> Pesquisar por: &nbsp
 	<input type="radio" name="tipoPesquisa" value="Tudo" checked>Tudo 
 	<input type="radio" name="tipoPesquisa" value="Animais">Animais
-	<input type="radio" name="tipoPesquisa" value="Donos">Donos
 	<input type="radio" name="tipoPesquisa" value="Posts">Posts
 </form>
 
 <?php
 $possuiResultados = 0;
 if(!empty($_POST['pesquisa'])){
-	if($ocorrenciasDono){
-		echo "<h3>Donos</h3>";
-		foreach($ocorrenciasDono as $dono){
-			echo 
-			"<br><b>Nome</b>:".$dono['nome'].
-			"<br><b>Sobrenome</b>:".$dono['sobrenome'].
-			"<br><br>";
-		}
-		$possuiResultados+=1;
-	}
+	
 	if($ocorrenciasAnimal){
 		echo "<h3>Animais</h3>";
 		foreach($ocorrenciasAnimal as $animal){
@@ -46,6 +36,7 @@ if(!empty($_POST['pesquisa'])){
 		}
 		$possuiResultados+=1;
 	}
+
 	if($ocorrenciasPost){
 		echo "<h3>Posts</h3>";
 		foreach($ocorrenciasPost as $postagem){
@@ -53,6 +44,7 @@ if(!empty($_POST['pesquisa'])){
 		}
 		$possuiResultados+=1;
 	}
+	
 	if (!$possuiResultados){
 		echo "NA FORAM ACHADOS RESULTADOS";
 	}

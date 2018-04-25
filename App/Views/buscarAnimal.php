@@ -20,7 +20,6 @@ else
 	<br> Pesquisar por: &nbsp
 	<input type="radio" name="tipoPesquisa" value="Tudo">Tudo
 	<input type="radio" name="tipoPesquisa" value="Animais" checked>Animais
-	<input type="radio" name="tipoPesquisa" value="Donos">Donos
 	<input type="radio" name="tipoPesquisa" value="Posts">Posts
 </form>
 
@@ -29,7 +28,7 @@ if(!empty($_POST['pesquisa'])){
 	if($ocorrenciasAnimal){
 		foreach($ocorrenciasAnimal as $animal){
 			echo
-			"<br><b>Nome</b>:".$animal['nomeAnimal']." (".$animal['especie']." de ".$animal['nomeDono'].")<br><br>";
+			"<br><b>Nome</b>:".$animal['nomeAnimal']."<br><br>";
 		}
 	}
 	else{

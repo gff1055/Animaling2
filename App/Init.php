@@ -56,10 +56,10 @@ class Init{
 	}
 
 	public function run($url){
-		$existe = 0;
+		//$existe = 0;
 		foreach($this->rotas as $rota){
 			if($rota['route'] == $url){
-				$existe=1;
+				//$existe=1;
 				$classe = 'App\Controllers\\'.ucfirst($rota['controller']);
 				$action = $rota['action'];
 				$controller = new $classe;
@@ -77,11 +77,11 @@ class Init{
 		return parse_url($_SERVER["REQUEST_URI"],PHP_URL_PATH);
 	}
 
-	public function getParamRoute($url){
+	/*public function getParamRoute($url){
 		echo "<br>".$url."<br>";
 		$url = explode ("/", $url);
 		return $url; //veja como fica a saída
-	}
+	}*/
 
 	public function configurarRotas(array $pRotas){
 		$this->rotas = $pRotas;

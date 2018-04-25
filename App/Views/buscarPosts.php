@@ -20,7 +20,6 @@ else
 	<br> Pesquisar por: &nbsp
 	<input type="radio" name="tipoPesquisa" value="Tudo">Tudo 
 	<input type="radio" name="tipoPesquisa" value="Animais">Animais
-	<input type="radio" name="tipoPesquisa" value="Donos">Donos
 	<input type="radio" name="tipoPesquisa" value="Posts" checked>Posts
 </form>
 
