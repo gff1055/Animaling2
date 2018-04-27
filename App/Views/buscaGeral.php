@@ -32,7 +32,8 @@ if(!empty($_POST['pesquisa'])){
 		echo "<h3>Animais</h3>";
 		foreach($ocorrenciasAnimal as $animal){
 			echo
-			"<br><b>Nome</b>:".$animal['nome']." (".$animal['especie'].")<br><br>";
+			"<br><b>".$animal['nome']."</b>
+			<br>".$animal['descricao']."<br>";
 		}
 		$possuiResultados+=1;
 	}

@@ -28,18 +28,18 @@ class ModelAnimal
 
 	
 	// Exibe dados de um usuario
-	public function exibirDadosAnimal($pcodigo){
+	public function exibirDadosAnimal($pNick){
 
 		//preparando a query do banco de dados
-		$resultado=$this->conex->getConnection()->prepare(
-			"select nome,especie,sexo,nascimento
+		$resultado=$this->conex->prepare(
+			"select nome,especie,sexo,nascimento,descricao
 			from animal
-			where codigo=?"
+			where nick=?"
 			);
 		//RESULTADO=CONEXAO->prepare("SENTENCA SQL")
 		
 		//FAZENDO O BIND DOS INDICES NA QUERY COM OS VALORES
-		$resultado->bindValue(1,$pcodigo);
+		$resultado->bindValue(1,$pNick);
 		
 		//EXECUTANDO A QUERY
 		$resultado->execute();
@@ -47,7 +47,7 @@ class ModelAnimal
 		//resgatando o resultado da consulta linha a linha(fetch)
 		//cada linha é tratada como um objeto
 		if($resultado->rowCount() > 0){
-			while($linha=$resultado->fetch(PDO::FETCH_ASSOC)){
+			while($linha=$resultado->fetch(\PDO::FETCH_ASSOC)){
 				return $linha;
 			}			
 		}
@@ -176,7 +176,7 @@ class ModelAnimal
 
 	public function buscarPrincipaisAnimais($termo){
 		$query = "
-			select nome, especie
+			select nome,descricao
 			from animal
 			where nome like ?
 			limit 3";
@@ -187,7 +187,7 @@ class ModelAnimal
 
 	public function buscarTodosAnimais($termo){
 		$query = "
-			select nome, especie
+			select nome,descricao
 			from animal
 			where nome like ?";
 		return $this->buscarAnimal($termo, $query);					

@@ -68,8 +68,21 @@ class Init{
 			}
 		}
 		if(!$existe){
+			//extraindo os parametros da URL
 			$rota = $this->getParamRoute($url);
+			print_r($rota);
 			echo "<br>".$rota[$this->rotaVar]."<br>";
+			//verificando a estrutura da rota
+			if(count($rota)==$this->rotaVar+1){
+				$classe = 'App\Controllers\ControllerAnimal';
+				$action = 'index';
+				$controller = new $classe;
+				$controller->$action($rota[$this->rotaVar]);
+				echo "<br> animal sozinho....<br>";
+			}
+			elseif(count($rota)==$this->rotaVar+2){
+				echo "<br> animal perfil ou status....<br>";
+			}
 		}
 	}
 

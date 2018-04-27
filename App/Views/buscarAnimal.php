@@ -28,7 +28,8 @@ if(!empty($_POST['pesquisa'])){
 	if($ocorrenciasAnimal){
 		foreach($ocorrenciasAnimal as $animal){
 			echo
-			"<br><b>Nome</b>:".$animal['nome']."<br><br>";
+			"<br><b>".$animal['nome']."</b>
+			<br>".$animal['descricao']."<br>";
 		}
 	}
 	else{
