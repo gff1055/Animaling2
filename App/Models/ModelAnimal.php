@@ -18,8 +18,7 @@ class ModelAnimal
 	const NOME_JA_CADASTRADO=4;
 	const OK=5;
 	
-	function __construct($pConex)
-	{
+	function __construct($pConex){
 		$this->conex=$pConex;
 	}
 
@@ -33,9 +32,9 @@ class ModelAnimal
 
 		//preparando a query do banco de dados
 		$resultado=$this->conex->getConnection()->prepare(
-			"select animal.nome as nomeAnimal, especie, animal.sexo as sexo, animal.nascimento as dataNascimento, usuario
-			from animal, dono
-			where dono.codigo=animal.codigoDono and animal.codigo=?"
+			"select nome,especie,sexo,nascimento
+			from animal
+			where codigo=?"
 			);
 		//RESULTADO=CONEXAO->prepare("SENTENCA SQL")
 		
@@ -62,7 +61,7 @@ class ModelAnimal
 	// FUNCAO PARA VERIFICAR SE UM DADO EXISTE NO BANCO
 	public function existeAnimal($pAnimal,$codOcorrencia){
 
-		$query = "select * from animal where nome=? and codigoDono=?";
+		$query = "select * from animal where nick=?";
 		try{
 
 			
@@ -73,13 +72,11 @@ class ModelAnimal
 			else{
 				$query = $query." and codigo<>?";
 				$result=$this->conex->getConnection()->prepare($query);
-				$result->bindValue(3,$pAnimal->getCodigo());
+				$result->bindValue(2,$pAnimal->getCodigo());
 			}
 
 			//EFETUANDO BIND DE VALORES NA QUERY
-			$result->bindValue(1,$pAnimal->getNome());
-			$result->bindValue(2,$pAnimal->getCodigoDono());
-						
+			$result->bindValue(1,$pAnimal->getNick());						
 
 			//EXECUCAO DA QUERY COM OS VALORES
 			$result->execute();
@@ -91,25 +88,27 @@ class ModelAnimal
 		
 		//VERIFICA A QUANTIDADE DE LINHAS RETORNADAS DA EXECUCAO DA QUERY
 		if($result->rowCount()>0){
+			echo "existe";
 			return true;
 		}
 		
 		//RETORNA SE O USUARIO NAO EXISTE		
 		else{
+			echo "nao existe";
 			return false;
 		}
 	}
 
 
 	public function inserirAnimal($pAnimal){
-		$query = "insert into animal(codigoDono,nome,especie,nascimento,sexo)values(?,?,?,?,?)";
+		$query = "insert into animal(codigoDono,nome,nick,especie,nascimento,sexo)values(?,?,?,?,?,?)";
 		$insercao = $this->gerenciaAnimal($pAnimal,$this::NOVO_CADASTRO,$query);
 		return $insercao;
 	}
 
 
 	public function alterarDadosAnimal($pAnimal){
-		$query = "update animal set codigoDono=?, nome=?,especie=?,nascimento=?,sexo=? where codigo=?";
+		$query = "update animal set codigoDono=?, nome=?,nick=?,especie=?,nascimento=?,sexo=? where codigo=?";
 		$alteracao = $this->gerenciaAnimal($pAnimal,$this::ALTERACAO_DADOS,$query);
 		return $alteracao;
 	}	
@@ -130,15 +129,18 @@ class ModelAnimal
 
 			try{
 
+				//print_r($pAnimal);
+
 				$result=$this->conex->getConnection()->prepare($query);
 				$result->bindValue(1,$pAnimal->getCodigoDono());
 				$result->bindValue(2,$pAnimal->getNome());
-				$result->bindValue(3,$pAnimal->getEspecie());
-				$result->bindValue(4,$pAnimal->getNascimento());
-				$result->bindValue(5,$pAnimal->getSexo());
+				$result->bindValue(3,$pAnimal->getNick());
+				$result->bindValue(4,$pAnimal->getEspecie());
+				$result->bindValue(5,$pAnimal->getNascimento());
+				$result->bindValue(6,$pAnimal->getSexo());
 
 				if($operacao==$this::ALTERACAO_DADOS){
-					$result->bindValue(6,$pAnimal->getCodigo());
+					$result->bindValue(7,$pAnimal->getCodigo());
 				}
 
 				$result->execute();
@@ -174,10 +176,9 @@ class ModelAnimal
 
 	public function buscarPrincipaisAnimais($termo){
 		$query = "
-			select a.nome as nomeAnimal, especie, d.nome as nomeDono
-			from animal as a
-			inner join dono as d
-			on d.codigo = a.codigoDono and a.nome like ?
+			select nome, especie
+			from animal
+			where nome like ?
 			limit 3";
 		return $this->buscarAnimal($termo, $query);	
 				
@@ -186,10 +187,9 @@ class ModelAnimal
 
 	public function buscarTodosAnimais($termo){
 		$query = "
-			select a.nome as nomeAnimal, especie, d.nome as nomeDono
-			from animal as a
-			inner join dono as d
-			on d.codigo = a.codigoDono and a.nome like ?";
+			select nome, especie
+			from animal
+			where nome like ?";
 		return $this->buscarAnimal($termo, $query);					
 	}
 

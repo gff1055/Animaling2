@@ -6,6 +6,7 @@ class Animal{
 	private $nome;
 	private $especie;
 	private $nascimento;
+	private $descricao;
 	private $sexo;
 	
 	function Animal()
@@ -29,12 +30,29 @@ class Animal{
 		$this->codigo = $pCodigo;
 	}
 	
+
+	public function getNick(){
+		return $this->nick;
+	}
+	
+	public function setNick($pNick){
+		$this->codigo = $pNick;
+	}
+
 	public function getNome(){
 		return $this->nome;
 	}
 	
 	public function setNome($pNome){
 		$this->nome = $pNome;
+	}
+
+	public function getDescricao(){
+		return $this->descricao;
+	}
+	
+	public function setNome($pDescricao){
+		$this->nome = $pDescricao;
 	}
 	
 	public function getEspecie(){

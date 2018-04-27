@@ -31,7 +31,7 @@ class ModelDono{
 
 	
 
-	public function buscarPrincipaisDonos($termo){
+/*	public function buscarPrincipaisDonos($termo){
 		$query = "select * from dono where nome like ? or sobrenome like ? limit 3";
 		return $this->buscarDono($termo, $query);	
 				
@@ -102,7 +102,7 @@ class ModelDono{
 		}
 	}
 
-	
+*/	
 	// FUNCAO PARA VERIFICAR SE UM DADO EXISTE NO BANCO
 	public function existe($campo,$dado,$codOcorrencia){
 
