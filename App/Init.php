@@ -7,6 +7,7 @@ class Init{
 	private $rotas;
 	private $con;
 	public static $urlRoot='/animaling2/public';
+	public $rotaVar=3;
 
 	function __construct(){
 		$this->inicializarRotas();
@@ -56,32 +57,31 @@ class Init{
 	}
 
 	public function run($url){
-		//$existe = 0;
+		$existe = 0;
 		foreach($this->rotas as $rota){
 			if($rota['route'] == $url){
-				//$existe=1;
+				$existe=1;
 				$classe = 'App\Controllers\\'.ucfirst($rota['controller']);
 				$action = $rota['action'];
 				$controller = new $classe;
 				$controller->$action();
 			}
 		}
-		/*if(!$existe){
+		if(!$existe){
 			$rota = $this->getParamRoute($url);
-			$classe = 'App\Controllers\ControllerDono');
-			$action = 
-		}*/
+			echo "<br>".$rota[$this->rotaVar]."<br>";
+		}
 	}
 
 	public function urlDigit(){
 		return parse_url($_SERVER["REQUEST_URI"],PHP_URL_PATH);
 	}
 
-	/*public function getParamRoute($url){
+	public function getParamRoute($url){
 		echo "<br>".$url."<br>";
 		$url = explode ("/", $url);
 		return $url; //veja como fica a saída
-	}*/
+	}
 
 	public function configurarRotas(array $pRotas){
 		$this->rotas = $pRotas;
