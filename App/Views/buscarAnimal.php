@@ -1,19 +1,3 @@
-<?php
-use App\Init;
-
-if(!empty($_POST['pesquisa'])){
-	$titulo = $_POST['pesquisa']." - ";
-}
-else
-	$titulo = "";
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<title><?php echo $titulo ?>Pesquisa</title>
-</head>
-<body>
-
 <form method="Post" action="">
 	<input type="text" name="pesquisa" value="<?php echo $_POST['pesquisa']?>" />
 	<input type="submit" value="Buscar"/>
@@ -39,5 +23,3 @@ if(!empty($_POST['pesquisa'])){
 
 }
 ?>
-</body>
-</html>

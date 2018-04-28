@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\ModelDono;
 use App\Models\ModelAnimal;
 use App\Models\ModelStatus;
+use App\Views\Cabecalho;
 use App\Init;
 
 class ControllerBusca{
@@ -15,8 +16,12 @@ class ControllerBusca{
 
 	public function index(){
 
+		$cab = new Cabecalho();
+
 		$termo = $_POST["pesquisa"];
 		$tipo = $_POST["tipoPesquisa"];
+
+		$cab->abertura("$termo - Pesquisa");
 		
 		if($tipo=="Tudo"){
 
@@ -42,6 +47,8 @@ class ControllerBusca{
 		}
 
 		else echo "OPA...";
+
+		$cab->fechamento();
 	}
 
 }

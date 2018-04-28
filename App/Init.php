@@ -70,16 +70,19 @@ class Init{
 		if(!$existe){
 			//extraindo os parametros da URL
 			$rota = $this->getParamRoute($url);
-			print_r($rota);
-			echo "<br>".$rota[$this->rotaVar]."<br>";
+			
 			//verificando a estrutura da rota
+			// caso a rota tenha apenas um parametro
 			if(count($rota)==$this->rotaVar+1){
+				//carregando as classe controller de animais e acionando a action index
 				$classe = 'App\Controllers\ControllerAnimal';
 				$action = 'index';
 				$controller = new $classe;
 				$controller->$action($rota[$this->rotaVar]);
-				echo "<br> animal sozinho....<br>";
+				
 			}
+
+			//caso a rota tenha mais de um parametro
 			elseif(count($rota)==$this->rotaVar+2){
 				echo "<br> animal perfil ou status....<br>";
 			}
