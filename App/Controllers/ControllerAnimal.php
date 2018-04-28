@@ -10,13 +10,15 @@ class ControllerAnimal{
 		
 		$cab = new Cabecalho($nick);
 		$model = new ModelAnimal(Init::getDB());
-		$info = $model->exibirDadosAnimal($nick);
-		if($info==ModelAnimal::NO_RESULTS){
+		$dadosAnimal = $model->exibirDadosAnimal($nick);
+		if($dadosAnimal==ModelAnimal::NO_RESULTS){
 			$cab->abertura("Pagina não encontrada");
+			include_once "../App/Views/formBusca.php";
 			echo "O perfil associado a essa URL foi excluida ou nao existe";
 		}
 		else{
 			$cab->abertura("$nick - Página Inicial");
+			include_once "../App/Views/formBusca.php";
 			echo "<br>".$info['descricao']."<br>";
 		}
 		$cab->fechamento();

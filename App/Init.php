@@ -79,7 +79,6 @@ class Init{
 				$action = 'index';
 				$controller = new $classe;
 				$controller->$action($rota[$this->rotaVar]);
-				
 			}
 
 			//caso a rota tenha mais de um parametro
@@ -94,7 +93,7 @@ class Init{
 	}
 
 	public function getParamRoute($url){
-		echo "<br>".$url."<br>";
+		//echo "<br>".$url."<br>";
 		$url = explode ("/", $url);
 		return $url; //veja como fica a saída
 	}
