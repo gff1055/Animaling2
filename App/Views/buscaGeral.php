@@ -1,3 +1,6 @@
+<?php
+use App\Init;
+?>
 
 <form method="Post" action="">
 	<input type="text" name="pesquisa" value="<?php echo $_POST['pesquisa']?>"/>
@@ -16,7 +19,7 @@ if(!empty($_POST['pesquisa'])){
 		echo "<h3>Animais</h3>";
 		foreach($ocorrenciasAnimal as $animal){
 			echo
-			"<br><b>".$animal['nome']."</b>
+			"<br><a href=".Init::$urlRoot."/".$animal['nick']."><b>".$animal['nome']."</b></a>
 			<br>".$animal['descricao']."<br>";
 		}
 		$possuiResultados+=1;
@@ -25,7 +28,10 @@ if(!empty($_POST['pesquisa'])){
 	if($ocorrenciasPost){
 		echo "<h3>Posts</h3>";
 		foreach($ocorrenciasPost as $postagem){
-			echo "<br><b>".$postagem['nomeAnimal']."</b><br>".$postagem['acontAgora']."<br><br>";
+			echo
+			"<br><a href=".Init::$urlRoot."/".$postagem['nick']."><b>".$postagem['nomeAnimal']."</b></a>
+			<br>".$postagem['acontAgora']."<br>
+			<br>";
 		}
 		$possuiResultados+=1;
 	}

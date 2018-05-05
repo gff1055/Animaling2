@@ -83,7 +83,10 @@ class Init{
 
 			//caso a rota tenha mais de um parametro
 			elseif(count($rota)==$this->rotaVar+2){
-				echo "<br> animal perfil ou status....<br>";
+				$classe = 'App\Controllers\ControllerAnimal';
+				$action=$rota[$this->rotaVar+1];
+				$controller = new $classe;
+				$controller->$action($rota[$this->rotaVar]);
 			}
 		}
 	}

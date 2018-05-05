@@ -32,7 +32,7 @@ class ModelAnimal
 
 		//preparando a query do banco de dados
 		$resultado=$this->conex->prepare(
-			"select nome,especie,sexo,nascimento,descricao
+			"select nome,nick,especie,sexo,nascimento,descricao
 			from animal
 			where nick=?"
 			);
@@ -176,7 +176,7 @@ class ModelAnimal
 
 	public function buscarPrincipaisAnimais($termo){
 		$query = "
-			select nome,descricao
+			select nome,descricao,nick
 			from animal
 			where nome like ?
 			limit 3";
@@ -187,7 +187,7 @@ class ModelAnimal
 
 	public function buscarTodosAnimais($termo){
 		$query = "
-			select nome,descricao
+			select nome,descricao,nick
 			from animal
 			where nome like ?";
 		return $this->buscarAnimal($termo, $query);					

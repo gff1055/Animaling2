@@ -1,3 +1,7 @@
+<?php
+use App\Init;
+?>
+
 <form method="Post" action="">
 	<input type="text" name="pesquisa" value="<?php echo $_POST['pesquisa']?>" />
 	<input type="submit" value="Buscar"/>
@@ -12,7 +16,8 @@ if(!empty($_POST['pesquisa'])){
 	if($ocorrenciasAnimal){
 		foreach($ocorrenciasAnimal as $animal){
 			echo
-			"<br><b>".$animal['nome']."</b>
+			"<br>
+			<a href=".Init::$urlRoot."/".$animal['nick']."><b>".$animal['nome']."</b></a>
 			<br>".$animal['descricao']."<br>";
 		}
 	}

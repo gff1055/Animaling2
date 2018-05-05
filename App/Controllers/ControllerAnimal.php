@@ -2,16 +2,24 @@
 namespace App\Controllers;
 
 use App\Models\ModelAnimal;
+use App\Models\ModelStatus;
 use App\Views\Cabecalho;
 use App\Init;
 
 class ControllerAnimal{
+	
+	
 	public function index($nick){
 		
 		$cab = new Cabecalho($nick);
-		$model = new ModelAnimal(Init::getDB());
-		$dadosAnimal = $model->exibirDadosAnimal($nick);
+
+		$modelAnimal = new ModelAnimal(Init::getDB());
+		$modelStatus = new ModelStatus(Init::getDB());
+		
+		$dadosAnimal = $modelAnimal->exibirDadosAnimal($nick);
+		$posts = $modelStatus->exibirTodosStatus($nick);
 		$titulo = "";
+		
 		if($dadosAnimal==ModelAnimal::NO_RESULTS){
 			$cab->abertura("Pagina não encontrada");
 			include_once "../App/Views/formBusca.php";
@@ -29,8 +37,10 @@ class ControllerAnimal{
 
 	}
 	
-	public function novoStatus(){
-
+	public function newpost($pNick){
+		
+		//$modelPost = new ModelStatus(In);
+		echo "ola".$pNick;
 	}
 	
 	public function atualizarStatus(){

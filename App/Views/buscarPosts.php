@@ -1,3 +1,6 @@
+<?php
+use App\Init;
+?>
 <form method="Post" action="">
 	<input type="text" name="pesquisa" value="<?php echo $_POST['pesquisa']?>" />
 	<input type="submit" value="Buscar"/>
@@ -11,7 +14,11 @@
 if(!empty($_POST['pesquisa'])){
 	if($ocorrenciasPosts){
 		foreach($ocorrenciasPosts as $postagem){
-			echo "<br><b>".$postagem['nomeAnimal']."</b><br>".$postagem['acontAgora']."<br><br>";
+			echo 
+			"<br>
+			<a href=".Init::$urlRoot."/".$postagem['nick']."><b>".$postagem['nomeAnimal']."</b></a>
+			<br>".$postagem['acontAgora']."
+			<br><br>";
 		}
 	}
 	else{

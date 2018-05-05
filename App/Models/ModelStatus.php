@@ -25,24 +25,24 @@ class ModelStatus{
 	}
 
 	
-	public function exibirTodosStatus($codigoAnimal){
+	public function exibirTodosStatus($pNick){
 
 		try{
 
-			$resultado=$this->conex->getconnection()->prepare("
+			$resultado=$this->conex->prepare("
 				select a.nome as nomeAnimal, s.conteudo as conteudo, s.dataStatus as dataStatus 
 				from animal as a
 				inner join status as s 
 				on a.codigo=s.codigoAnimal
-				where s.codigoAnimal=?");
-			$resultado->bindValue(1,$codigoAnimal);
+				where a.nick=?");
+			$resultado->bindValue(1,$pNick);
 			$resultado->execute();
 
 			$todosStatus=array();
 
 			//verifica se foi encontrado algum status associado ao animal
 			if($resultado->rowCount()>0 ){
-				while($linha=$resultado->fetch(PDO::FETCH_ASSOC)){
+				while($linha=$resultado->fetch(\PDO::FETCH_ASSOC)){
 					array_push($todosStatus,$linha);
 				}
 
@@ -122,7 +122,7 @@ class ModelStatus{
 	
 
 	public function buscarPrincipaisStatus($termo){
-		$query ="select a.nome as nomeAnimal, s.conteudo as acontAgora
+		$query ="select a.nome as nomeAnimal, s.conteudo as acontAgora, nick
 		from animal as a
 		inner join status as s
 		on a.codigo = s.codigoAnimal
@@ -132,7 +132,7 @@ class ModelStatus{
 
 	public function buscarTodosStatus($termo){
 		$query =
-		"select a.nome as nomeAnimal, s.conteudo as acontAgora
+		"select a.nome as nomeAnimal, s.conteudo as acontAgora, nick
 		from animal as a
 		inner join status as s
 		on a.codigo = s.codigoAnimal
