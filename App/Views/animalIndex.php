@@ -1,3 +1,8 @@
+<?php
+use App\Models\Status;
+
+?>
+
 <div>
 	<br>
 	<?php echo $dadosAnimal['nome']?><br>
@@ -10,7 +15,10 @@
 
 <form method="post" action="../public/<?php echo $dadosAnimal['nick']?>/newpost">
 
-	<input type="text" name="novoPost"/>
+	<input type="text" name="novPost"/>
+	<input type="hidden" name="codAn" value="<?php echo $dadosAnimal['codigo']?>">
+	<input type="hidden" name="hora" value="<?php echo Status::setDataStatus(Status::NOVO_STATUS)?>">
+
 	<input type="submit" value="Postar">
 
 </form>

@@ -76,7 +76,7 @@ class ModelStatus{
 		try{
 
 			//preparacao a query
-			$resultado=$this->conex->getconnection()->prepare($query);
+			$resultado=$this->conex->prepare($query);
 
 			//fazendo o binding do codigo, data de status e do conteudo
 			$resultado->bindValue(1,$pStatus->getConteudo());

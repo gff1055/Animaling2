@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use App\Models\ModelAnimal;
 use App\Models\ModelStatus;
+use App\Models\Status;
 use App\Views\Cabecalho;
 use App\Init;
 
@@ -38,9 +39,20 @@ class ControllerAnimal{
 	}
 	
 	public function newpost($pNick){
+
+		$status = new Status();
+		$modelStatus = new ModelStatus(Init::getDB());
+
+		$status->setCodigoAnimal($_POST['codAn']);
+		$status->setConteudo($_POST['novPost']);
+		$status->setDataStatus(Status::NOVO_STATUS);
+			
+		echo $modelStatus->inserirStatus($status);
+
+
 		
 		//$modelPost = new ModelStatus(In);
-		echo "ola".$pNick;
+		//echo "ola".$pNick;
 	}
 	
 	public function atualizarStatus(){
