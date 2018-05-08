@@ -17,6 +17,7 @@ if(!empty($_POST['pesquisa'])){
 			echo 
 			"<br>
 			<a href=".Init::$urlRoot."/".$postagem['nick']."><b>".$postagem['nomeAnimal']."</b></a>
+			<br>".$postagem['dataStatus']."
 			<br>".$postagem['acontAgora']."
 			<br><br>";
 		}

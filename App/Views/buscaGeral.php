@@ -30,6 +30,7 @@ if(!empty($_POST['pesquisa'])){
 		foreach($ocorrenciasPost as $postagem){
 			echo
 			"<br><a href=".Init::$urlRoot."/".$postagem['nick']."><b>".$postagem['nomeAnimal']."</b></a>
+			<br>".$postagem['dataStatus']."
 			<br>".$postagem['acontAgora']."<br>
 			<br>";
 		}

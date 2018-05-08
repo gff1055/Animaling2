@@ -34,7 +34,8 @@ class ModelStatus{
 				from animal as a
 				inner join status as s 
 				on a.codigo=s.codigoAnimal
-				where a.nick=?");
+				where a.nick=?
+				order by dataStatus desc");
 			$resultado->bindValue(1,$pNick);
 			$resultado->execute();
 
@@ -122,21 +123,24 @@ class ModelStatus{
 	
 
 	public function buscarPrincipaisStatus($termo){
-		$query ="select a.nome as nomeAnimal, s.conteudo as acontAgora, nick
+		$query ="select a.nome as nomeAnimal, s.conteudo as acontAgora, nick, s.dataStatus
 		from animal as a
 		inner join status as s
 		on a.codigo = s.codigoAnimal
-		where a.nome like ? or s.conteudo like ?";
+		where a.nome like ? or s.conteudo like ?
+		order by s.dataStatus DESC
+		limit 3";
 		return $this->buscarStatus($termo, $query);
 	}
 
 	public function buscarTodosStatus($termo){
 		$query =
-		"select a.nome as nomeAnimal, s.conteudo as acontAgora, nick
+		"select a.nome as nomeAnimal, s.conteudo as acontAgora, nick, s.dataStatus
 		from animal as a
 		inner join status as s
 		on a.codigo = s.codigoAnimal
-		where a.nome like ? or s.conteudo like ? limit 3";
+		where a.nome like ? or s.conteudo like ?
+		order by s.dataStatus DESC";
 		return $this->buscarStatus($termo, $query);	
 	}
 

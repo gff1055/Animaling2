@@ -17,7 +17,7 @@ use App\Models\Status;
 
 	<input type="text" name="novPost"/>
 	<input type="hidden" name="codAn" value="<?php echo $dadosAnimal['codigo']?>">
-	<input type="hidden" name="hora" value="<?php echo Status::setDataStatus(Status::NOVO_STATUS)?>">
+	
 
 	<input type="submit" value="Postar">
 
