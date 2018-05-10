@@ -99,6 +99,12 @@ class ModelAnimal
 		}
 	}
 
+	public function checkCodNick($pNick, $pCodigo){
+		try{
+			$query = "select * from "
+		}
+	}
+
 
 	public function inserirAnimal($pAnimal){
 		$query = "insert into animal(codigoDono,nome,nick,especie,nascimento,sexo)values(?,?,?,?,?,?)";
