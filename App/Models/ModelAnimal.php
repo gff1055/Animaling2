@@ -99,10 +99,23 @@ class ModelAnimal
 		}
 	}
 
-	public function checkCodNick($pNick, $pCodigo){
+	public function getCodFromNick($pNick){
 		try{
-			$query = "select * from "
+			$query = "select codigo from animal where nick = ?";
+			$result = $this->conex->prepare($query);
+			$result->bindValue(1,$pNick);
+			$result->execute();
+		}catch(PDOException $e){
+			echo "ERRO: ".$e.getMessage();
+
 		}
+
+		if($result->rowCount()>0){
+			$cod = $result->fetch(\PDO::FETCH_ASSOC);
+			return $cod['codigo'];
+		}
+		else
+			return -1;
 	}
 
 

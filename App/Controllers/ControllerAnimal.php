@@ -40,6 +40,9 @@ class ControllerAnimal{
 	
 	public function newpost($pNick){
 
+		$modelAnimal = new ModelAnimal(Init::getDB());
+		echo $modelAnimal->getCodFromNick($pNick);
+
 		$status = new Status();
 		$modelStatus = new ModelStatus(Init::getDB());
 
