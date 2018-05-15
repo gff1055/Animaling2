@@ -40,8 +40,8 @@ class ControllerAnimal{
 	
 	public function newpost($pNick){
 
-		$modelAnimal = new ModelAnimal(Init::getDB());
-		echo $modelAnimal->getCodFromNick($pNick);
+		//$modelAnimal = new ModelAnimal(Init::getDB());
+		//echo $modelAnimal->getCodFromNick($pNick);
 
 		$status = new Status();
 		$modelStatus = new ModelStatus(Init::getDB());
@@ -50,9 +50,8 @@ class ControllerAnimal{
 		$status->setConteudo($_POST['novPost']);
 		$status->setDataStatus(Status::NOVO_STATUS);
 			
-		echo $modelStatus->inserirStatus($status);
-
-
+		$modelStatus->inserirStatus($status);
+		
 		
 		//$modelPost = new ModelStatus(In);
 		//echo "ola".$pNick;
