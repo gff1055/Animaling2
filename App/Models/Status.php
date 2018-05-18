@@ -51,7 +51,7 @@ class Status{
 		if($param = Status::NOVO_STATUS){
 		
 			date_default_timezone_set("America/Sao_Paulo");
-			$this->dataStatus =  date('Y-m-d H:i');
+			$this->dataStatus =  date('Y-m-d H:i:s');
 		
 		}
 		

@@ -16,16 +16,20 @@ class ControllerAnimal{
 
 		$modelAnimal = new ModelAnimal(Init::getDB());
 		$dadosAnimal = $modelAnimal->exibirDadosAnimal($nick);
-		
+
 		$modelStatus = new ModelStatus(Init::getDB());
-		$posts = $modelStatus->exibirTodosStatus($nick);
-		if(!empty('novoPost')){
-			$status->new Status();
+		
+		if(!empty($_POST['novoPost'])){
+			$status = new Status();
 			$status->setCodigoAnimal($_POST['codigoAnimal']);
-			$status->setConteudo($_POST['conteudo']);
-			$statud->setDataStatus(Status::NOVO_STATUS);	
+			$status->setConteudo($_POST['novoPost']);
+			$status->setDataStatus(Status::NOVO_STATUS);
+			$modelStatus->inserirStatus($status);	
 		}
-		$titulo = "";
+
+		
+		$posts = $modelStatus->exibirTodosStatus($nick);
+		//$titulo = "";
 		
 		if($dadosAnimal==ModelAnimal::NO_RESULTS){
 			$cab->abertura("Pagina não encontrada");
