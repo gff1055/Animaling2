@@ -14,9 +14,9 @@ use App\Models\Status;
 </div>
 
 <form method="post" action="../public/<?php echo $dadosAnimal['nick']?>/newpost">
-	<input type="text" name="novPost"/>
+	<input type="text" name="novoPost"/>
 	<input type="submit" value="Postar">
-	<input type="hidden" name="codAn" value="<?php echo $dadosAnimal['codigo']?>">
+	<input type="hidden" name="codigoAnimal" value="<?php echo $dadosAnimal['codigo']?>">
 
 </form>
 

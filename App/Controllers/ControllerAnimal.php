@@ -15,10 +15,16 @@ class ControllerAnimal{
 		$cab = new Cabecalho($nick);
 
 		$modelAnimal = new ModelAnimal(Init::getDB());
-		$modelStatus = new ModelStatus(Init::getDB());
-		
 		$dadosAnimal = $modelAnimal->exibirDadosAnimal($nick);
+		
+		$modelStatus = new ModelStatus(Init::getDB());
 		$posts = $modelStatus->exibirTodosStatus($nick);
+		if(!empty('novoPost')){
+			$status->new Status();
+			$status->setCodigoAnimal($_POST['codigoAnimal']);
+			$status->setConteudo($_POST['conteudo']);
+			$statud->setDataStatus(Status::NOVO_STATUS);	
+		}
 		$titulo = "";
 		
 		if($dadosAnimal==ModelAnimal::NO_RESULTS){
