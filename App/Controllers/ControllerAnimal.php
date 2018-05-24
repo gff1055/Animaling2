@@ -21,21 +21,24 @@ class ControllerAnimal{
 		
 		if(!empty($_POST['novoPost'])){
 			$status = new Status();
-			$status->setCodigoAnimal($_POST['codigoAnimal']);
+			$status->setCodigoAnimal($dadosAnimal['codigo']);
 			$status->setConteudo($_POST['novoPost']);
 			$status->setDataStatus(Status::NOVO_STATUS);
 			$modelStatus->inserirStatus($status);	
 		}
+		
+		//EXIBINDO TODOS OS POSTS
 
-		
 		$posts = $modelStatus->exibirTodosStatus($nick);
-		//$titulo = "";
 		
+		//se o animal possuir posts
 		if($dadosAnimal==ModelAnimal::NO_RESULTS){
 			$cab->abertura("Pagina não encontrada");
 			include_once "../App/Views/formBusca.php";
 			include_once "../App/Views/paginaNaoExiste.php";
 		}
+
+		//se o animal nao possui posts
 		else{
 			$cab->abertura("$nick - Página Inicial");
 			include_once "../App/Views/formBusca.php";
