@@ -11,7 +11,7 @@ class ControllerAnimal{
 	
 	
 	public function index($nick){
-		
+
 		$cab = new Cabecalho($nick);
 
 		$modelAnimal = new ModelAnimal(Init::getDB());

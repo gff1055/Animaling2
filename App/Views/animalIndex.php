@@ -17,8 +17,7 @@ use App\Models\Status;
 <form method="post" action="">
 	<input type="text" name="novoPost"/>
 	<input type="submit" value="Postar">
-	<input type="hidden" name="codigoAnimal" value="<?php echo $dadosAnimal['codigo']?>">
-
+	
 </form>
 
 <div>
@@ -26,9 +25,13 @@ use App\Models\Status;
 	if($posts){
 		foreach($posts as $post){
 			echo 
-			"<br><br><br>".
-			$post['nomeAnimal']."<br>".
-			$post['dataStatus']."<br>".
+			"<br>
+			<br>
+			<br>"
+			.$post['nomeAnimal']
+			."<br>".
+			$post['dataStatus']
+			."<br>".
 			$post['conteudo'];
 
 		}
