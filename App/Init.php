@@ -48,7 +48,7 @@ class Init{
 		$achou = 0;
 		foreach($this->rotas as $rota){
 			if($rota['route'] == $url && !$achou){
-				$existe=1;
+				$achou=1;
 				$classe = 'App\Controllers\\'.ucfirst($rota['controller']);
 				$action = $rota['action'];
 				$controller = new $classe;

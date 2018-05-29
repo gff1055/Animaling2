@@ -25,15 +25,14 @@ use App\Models\Status;
 	if($posts){
 		foreach($posts as $post){
 			echo 
+			"<br><br><br>"
+			.$post['nomeAnimal'].
 			"<br>
-			<br>
+			<a href='../e'>Editar</a> <a href=''>Excluir</a> 
 			<br>"
-			.$post['nomeAnimal']
-			."<br>".
-			$post['dataStatus']
-			."<br>".
-			$post['conteudo'];
-
+			.$post['dataStatus'].
+			"<br>"
+			.$post['conteudo'];
 		}
 	}
 	else
