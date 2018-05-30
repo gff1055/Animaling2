@@ -56,6 +56,28 @@ class ModelStatus{
 		}
 	}
 
+	public function exibirUmStatus($codigoStatus){
+		try{
+			$resultado=$this->conex->prepare("
+				select a.nome as nomeAnimal, s.conteudo as conteudo, s.dataStatus as dataStatus
+				from animal as a
+				inner join status as s
+				on a.codigo=s.codigoAnimal
+				where s.codigo=?");
+			$resultado->bindValue(1,$codigoStatus);
+			$resultado->execute();
+
+			if($resultado->rowCount()>0){
+				$linha = $resultado->fetch(\PDO::FETCH_ASSOC));
+				return $linha;
+			}
+			else
+				return null;
+		}catch(PDOException $e){
+			return "ERRO".$erro->getmessage();
+		}
+	}
+
 	public function inserirStatus($pStatus){
 	
 		$query = "insert into status(conteudo, codigoAnimal, dataStatus) values (?,?,?)";

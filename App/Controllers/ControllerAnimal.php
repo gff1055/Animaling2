@@ -47,8 +47,9 @@ class ControllerAnimal{
 		$cab->fechamento();
 	}
 
-	public function perfil(){
-
+	public function verPost($codigo){
+		$modelStatus = new ModelStatus(Init::getDB());
+		$post = 
 	}
 	
 	public function newpost($pNick){
