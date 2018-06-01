@@ -48,8 +48,14 @@ class ControllerAnimal{
 	}
 
 	public function verPost($codigo){
-		$modelStatus = new ModelStatus(Init::getDB());
-		$post = 
+		$modelPost = new ModelStatus(Init::getDB());
+		$modelPost->exibirUmStatus($codigo);
+		
+
+		//exibirUmStatus($codigo)
+		echo "post do ".$codigo;
+		//$modelStatus = new ModelStatus(Init::getDB());
+		//$post = 
 	}
 	
 	public function newpost($pNick){

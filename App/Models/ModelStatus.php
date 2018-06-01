@@ -30,7 +30,7 @@ class ModelStatus{
 		try{
 
 			$resultado=$this->conex->prepare("
-				select a.nome as nomeAnimal, s.conteudo as conteudo, s.dataStatus as dataStatus 
+				select s.codigo as codigoPost, a.nome as nomeAnimal, s.conteudo as conteudo, s.dataStatus as dataStatus 
 				from animal as a
 				inner join status as s 
 				on a.codigo=s.codigoAnimal
@@ -68,7 +68,7 @@ class ModelStatus{
 			$resultado->execute();
 
 			if($resultado->rowCount()>0){
-				$linha = $resultado->fetch(\PDO::FETCH_ASSOC));
+				$linha = $resultado->fetch(\PDO::FETCH_ASSOC);
 				return $linha;
 			}
 			else

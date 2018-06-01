@@ -18,6 +18,9 @@ class Init{
 
 	public function inicializarRotas($pUrlDividida){
 		
+		echo count($pUrlDividida);
+
+
 		$arrayRotasAux['buscaIndex'] = array(
 			'route'=>Init::$urlRoot.'/busca',
 			'controller'=>'controllerBusca',
@@ -39,6 +42,8 @@ class Init{
 			'value'=>$pUrlDividida[3]
 		);
 
+		// Verifica se o endereco possui mais subdominios
+		if(count($pUrlDividida)==5)
 		$arrayRotasAux['verPostAnimal'] = array(
 			'route'=>Init::$urlRoot.'/'.$pUrlDividida[3].'/'.$pUrlDividida[4],
 			'controller'=>'controllerAnimal',

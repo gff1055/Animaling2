@@ -1,5 +1,6 @@
 <?php
 use App\Models\Status;
+use App\Init;
 
 ?>
 
@@ -22,17 +23,16 @@ use App\Models\Status;
 
 <div>
 	<?php
+	// exibe as postagens
 	if($posts){
 		foreach($posts as $post){
-			echo 
-			"<br><br><br>"
-			.$post['nomeAnimal'].
-			"<br>
-			<a href='../e'>Editar</a> <a href=''>Excluir</a> 
-			<br>"
-			.$post['dataStatus'].
-			"<br>"
-			.$post['conteudo'];
+			?>
+			<br><br><br>
+			<a href="<?php echo Init::$urlRoot.'/'.$dadosAnimal['nick']?>"><?php echo $post['nomeAnimal']?></a><br>
+			<a href="<?php echo Init::$urlRoot.'/'.$dadosAnimal['nick'].'/'.$post['codigoPost']?>">Editar</a><br>
+			<?php echo $post['dataStatus']?><br>
+			<?php echo $post['conteudo']?><br>
+			<?php
 		}
 	}
 	else
