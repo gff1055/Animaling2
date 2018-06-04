@@ -18,9 +18,6 @@ class Init{
 
 	public function inicializarRotas($pUrlDividida){
 		
-		echo count($pUrlDividida);
-
-
 		$arrayRotasAux['buscaIndex'] = array(
 			'route'=>Init::$urlRoot.'/busca',
 			'controller'=>'controllerBusca',
@@ -56,6 +53,7 @@ class Init{
 
 	}
 
+//chamando a funcao associada a rota
 	public function run($url){
 		$achou = 0;
 		foreach($this->rotas as $rota){
@@ -68,6 +66,7 @@ class Init{
 			}
 		}
 	}
+
 
 	public function urlDigit(){
 		return parse_url($_SERVER["REQUEST_URI"],PHP_URL_PATH);

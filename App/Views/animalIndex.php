@@ -30,7 +30,7 @@ use App\Init;
 			<br><br><br>
 			<a href="<?php echo Init::$urlRoot.'/'.$dadosAnimal['nick']?>"><?php echo $post['nomeAnimal']?></a><br>
 			<a href="<?php echo Init::$urlRoot.'/'.$dadosAnimal['nick'].'/'.$post['codigoPost']?>">Editar</a><br>
-			<?php echo $post['dataStatus']?><br>
+			<a href="<?php echo Init::$urlRoot.'/'.$dadosAnimal['nick'].'/'.$post['codigoPost']?>"><?php echo $post['dataStatus']?></a><br>
 			<?php echo $post['conteudo']?><br>
 			<?php
 		}

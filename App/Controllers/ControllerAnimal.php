@@ -48,12 +48,19 @@ class ControllerAnimal{
 	}
 
 	public function verPost($codigo){
+
+		$cab = new Cabecalho();
+
 		$modelPost = new ModelStatus(Init::getDB());
-		$modelPost->exibirUmStatus($codigo);
+		$post = $modelPost->exibirUmStatus($codigo);
+
+		$cab->abertura($post['nomeAnimal']);
+		include_once "../App/Views/exibePost.php";
+		$cab->fechamento();
 		
 
 		//exibirUmStatus($codigo)
-		echo "post do ".$codigo;
+		
 		//$modelStatus = new ModelStatus(Init::getDB());
 		//$post = 
 	}
