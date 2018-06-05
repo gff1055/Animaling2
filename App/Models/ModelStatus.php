@@ -133,13 +133,13 @@ class ModelStatus{
 			$resultado=$this->conex->getConnection()->prepare("delete from status where codigo=?");
 			$resultado->bindValue(1,$pStatus->getCodigo());
 			$resultado->execute();
-			return "O status foi excluido";
+			return true;
 
 
 		}catch(PDOException $erro){
 
 			echo "Erro: ".$erro.getMessage();
-			return "erro inesperado";
+			return false;
 		}
 	}
 	

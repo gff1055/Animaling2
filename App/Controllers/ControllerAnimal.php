@@ -57,18 +57,10 @@ class ControllerAnimal{
 		$cab->abertura($post['nomeAnimal']);
 		include_once "../App/Views/exibePost.php";
 		$cab->fechamento();
-		
-
-		//exibirUmStatus($codigo)
-		
-		//$modelStatus = new ModelStatus(Init::getDB());
-		//$post = 
 	}
 	
-	public function newpost($pNick){
 
-		//$modelAnimal = new ModelAnimal(Init::getDB());
-		//echo $modelAnimal->getCodFromNick($pNick);
+	public function newpost($pNick){
 
 		$status = new Status();
 		$modelStatus = new ModelStatus(Init::getDB());
@@ -78,10 +70,11 @@ class ControllerAnimal{
 		$status->setDataStatus(Status::NOVO_STATUS);
 			
 		$modelStatus->inserirStatus($status);
-		
-		
-		//$modelPost = new ModelStatus(In);
-		//echo "ola".$pNick;
+	}
+
+	public function deletarPost($pCodigo){
+		//$modelStatus = new ModelStatus(Init::getDB());
+		//$modelStatus->excluirStatus($pCodigo);		
 	}
 	
 	public function atualizarStatus(){

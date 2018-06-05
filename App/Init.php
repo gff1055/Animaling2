@@ -39,13 +39,6 @@ class Init{
 			'value'=>$pUrlDividida[3]
 		);
 
-		$arrayRotasAux['excluirPost'] = array(
-			'route'=>Init::$urlRoot.'/'.$pUrlDividida[3],
-			'controller'=>'controllerAnimal',
-			'action'=>'index',
-			'value'=>$pUrlDividida[3]
-		)
-
 		// Verifica se o endereco possui mais subdominios
 		if(count($pUrlDividida)==5)
 		$arrayRotasAux['verPostAnimal'] = array(
@@ -56,7 +49,7 @@ class Init{
 		);
 
 		elseif(count($pUrlDividida)==6)
-			$arrayRotasAux['verPostAnimal'] = array(
+			$arrayRotasAux['excluirPost'] = array(
 				'route'=>Init::$urlRoot.'/'.$pUrlDividida[3].'/'.$pUrlDividida[4].'/delete',
 				'controller'=>'controllerAnimal',
 				'action'=>'deletarPost',
