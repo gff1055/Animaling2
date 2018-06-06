@@ -130,8 +130,8 @@ class ModelStatus{
 
 		try{
 
-			$resultado=$this->conex->getConnection()->prepare("delete from status where codigo=?");
-			$resultado->bindValue(1,$pStatus->getCodigo());
+			$resultado=$this->conex->prepare("delete from status where codigo=?");
+			$resultado->bindValue(1,$pStatus);
 			$resultado->execute();
 			return true;
 

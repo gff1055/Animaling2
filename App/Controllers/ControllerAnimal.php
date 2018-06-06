@@ -73,8 +73,10 @@ class ControllerAnimal{
 	}
 
 	public function deletarPost($pCodigo){
-		//$modelStatus = new ModelStatus(Init::getDB());
-		//$modelStatus->excluirStatus($pCodigo);		
+		$modelStatus = new ModelStatus(Init::getDB());
+		$modelStatus->excluirStatus($pCodigo);
+		echo "deletando post ".$pCodigo;
+		include_once "../App/Views/excluiPost.php";		
 	}
 	
 	public function atualizarStatus(){
