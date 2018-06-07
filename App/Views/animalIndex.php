@@ -14,6 +14,10 @@ use App\Init;
 	<br>
 </div>
 
+<div>
+	<?php echo $seguidores['quantidadeSeguidores']?><br>
+</div>
+
 <!--<form method="post" action="../public/<?php echo $dadosAnimal['nick']?>/newpost"> -->
 <form method="post" action="">
 	<input type="text" name="novoPost"/>

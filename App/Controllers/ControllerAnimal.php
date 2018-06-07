@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use App\Models\ModelAnimal;
 use App\Models\ModelStatus;
+use App\Models\ModelInteracao;
 use App\Models\Status;
 use App\Views\Cabecalho;
 use App\Init;
@@ -17,8 +18,12 @@ class ControllerAnimal{
 		$modelAnimal = new ModelAnimal(Init::getDB());
 		$dadosAnimal = $modelAnimal->exibirDadosAnimal($nick);
 
-		$modelStatus = new ModelStatus(Init::getDB());
+		$modelInteracao = new ModelInteracao(Init::getDB());
+		//$seguidos = $modelInteracao->listarSeguidos($dadosAnimal['codigoDono']);
+		$seguidores = $modelInteracao->listarSeguidores($dadosAnimal['codigoDono']);
 		
+
+		$modelStatus = new ModelStatus(Init::getDB());
 		if(!empty($_POST['novoPost'])){
 			$status = new Status();
 			$status->setCodigoAnimal($dadosAnimal['codigo']);
@@ -26,9 +31,8 @@ class ControllerAnimal{
 			$status->setDataStatus(Status::NOVO_STATUS);
 			$modelStatus->inserirStatus($status);	
 		}
-		
-		//EXIBINDO TODOS OS POSTS
 
+		//EXIBINDO TODOS OS POSTS
 		$posts = $modelStatus->exibirTodosStatus($nick);
 		
 		//se o animal possuir posts

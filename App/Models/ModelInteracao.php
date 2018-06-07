@@ -1,6 +1,8 @@
 <?php
 
-require_once("Conexao.php");
+namespace App\Models;
+
+use App\Init; 
 
 class ModelInteracao{
 
@@ -11,8 +13,8 @@ class ModelInteracao{
 	const EDITANDO_STATUS = -2;
 	const EXCLUSAO = -3;
 		
-	function __construct(){
-		$this->conex=new Conexao();
+	function __construct($pConex){
+		$this->conex=$pConex;
 	}
 
 	function __destruct(){
@@ -22,7 +24,7 @@ class ModelInteracao{
 	private function jaSegue($seguidor, $seguido){
 
 		try{
-			$resultado = $this->conex->getConnection()->prepare("
+			$resultado = $this->conex->prepare("
 				select * from interacao where codSeguidor=? and codSeguido=?");
 
 			$resultado->bindValue(1,$seguidor);
@@ -52,7 +54,7 @@ class ModelInteracao{
 
 		else{
 			try{
-				$resultado = $this->conex->getConnection()->prepare("insert into interacao(codSeguido, codSeguidor) values(?,?)");
+				$resultado = $this->conex->prepare("insert into interacao(codSeguido, codSeguidor) values(?,?)");
 
 				$resultado->bindValue(1,$pInteracao->getCodigoSeguido());
 				$resultado->bindValue(2,$pInteracao->getCodigoSeguidor());
@@ -70,7 +72,7 @@ class ModelInteracao{
 
 	public function listarSeguidores($codigoAnimal){
 			$query = "
-				select i.codSeguidor as seguidor, a.nome as nomeSeguidor
+				select count(*) as quantidadeSeguidores, i.codSeguidor as seguidor, a.nome as nomeSeguidor
 				from interacao as i
 				inner JOIN animal as a
 				on i.codSeguido=? and a.codigo=i.codSeguidor";
@@ -83,10 +85,8 @@ class ModelInteracao{
 
 
 	public function listarSeguidos($codigoAnimal){
-
-
 		$query = "
-				select i.codSeguido as seguido, a.nome as nomeSeguido
+				select count(*) as quantidadeSeguidos, i.codSeguido as seguido, a.nome as nomeSeguido
 				from interacao as i
 				inner JOIN animal as a
 				on i.codSeguidor=? and a.codigo=i.codSeguido";
@@ -100,7 +100,7 @@ class ModelInteracao{
 	private function listar($query,$codigoAnimal){
 		try{
 
-			$resultado=$this->conex->getConnection()->prepare($query);
+			$resultado=$this->conex->prepare($query);
 
 			$resultado->bindValue(1,$codigoAnimal);
 			$resultado->execute();
@@ -108,7 +108,7 @@ class ModelInteracao{
 			$todosSeguidores=array();
 
 			if($resultado->rowCount()>0){
-				while($linha = $resultado->fetch(PDO::FETCH_ASSOC)){
+				while($linha = $resultado->fetch(\PDO::FETCH_ASSOC)){
 					array_push($todosSeguidores,$linha);
 				}
 				return $todosSeguidores;
@@ -133,7 +133,7 @@ class ModelInteracao{
 			where
 				codSeguido=? and codSeguidor=?";
 
-			$resultado = $this->conex->getConnection()->prepare($query);
+			$resultado = $this->conex->prepare($query);
 
 			$resultado->bindValue(1,$pInteracao->getCodigoSeguido());
 			$resultado->bindValue(2,$pInteracao->getCodigoSeguidor());
