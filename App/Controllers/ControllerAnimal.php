@@ -20,7 +20,7 @@ class ControllerAnimal{
 
 		$modelInteracao = new ModelInteracao(Init::getDB());
 		//$seguidos = $modelInteracao->listarSeguidos($dadosAnimal['codigoDono']);
-		$seguidores = $modelInteracao->listarSeguidores($dadosAnimal['codigoDono']);
+		$seguidores = $modelInteracao->listarSeguidores($dadosAnimal['codigo']);
 		
 
 		$modelStatus = new ModelStatus(Init::getDB());

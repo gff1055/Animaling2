@@ -72,10 +72,11 @@ class ModelInteracao{
 
 	public function listarSeguidores($codigoAnimal){
 			$query = "
-				select count(*) as quantidadeSeguidores, i.codSeguidor as seguidor, a.nome as nomeSeguidor
+				select i.codSeguidor as seguidor, a.nome as nomeSeguidor
 				from interacao as i
 				inner JOIN animal as a
 				on i.codSeguido=? and a.codigo=i.codSeguidor";
+				echo $codigoAnimal;
 
 			$seguidores = $this->listar($query,$codigoAnimal);
 			
