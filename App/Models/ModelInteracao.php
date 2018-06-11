@@ -76,7 +76,6 @@ class ModelInteracao{
 				from interacao as i
 				inner JOIN animal as a
 				on i.codSeguido=? and a.codigo=i.codSeguidor";
-				echo $codigoAnimal;
 
 			$seguidores = $this->listar($query,$codigoAnimal);
 			
@@ -115,7 +114,7 @@ class ModelInteracao{
 				return $todosSeguidores;
 			}
 
-			else return 0;
+			else return null;
 
 		}catch(PDOException $e){
 			return "<br> ERRO:".$e->getMessage();

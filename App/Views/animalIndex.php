@@ -15,7 +15,8 @@ use App\Init;
 </div>
 
 <div>
-	<?php echo print_r($seguidores)?><br>
+	<a href="">Seguidores(<?php echo count($seguidores);?>)</a><br>
+	<a href="">Seguindo(<?php echo count($seguindo);?>)</a>
 </div>
 
 <!--<form method="post" action="../public/<?php echo $dadosAnimal['nick']?>/newpost"> -->
