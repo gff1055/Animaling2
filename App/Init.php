@@ -40,14 +40,14 @@ class Init{
 		);
 
 		$arrayRotasAux['seguidores'] = array(
-			'route'=>Init::$urlRoot.'/'.$pUrlDividida[3],
+			'route'=>Init::$urlRoot.'/'.$pUrlDividida[3].'/seguidores',
 			'controller'=>'controllerAnimal',
 			'action'=>'seguidores',
 			'value'=>$pUrlDividida[3]
 		);
 
 		$arrayRotasAux['seguindo'] = array(
-			'route'=>Init::$urlRoot.'/'.$pUrlDividida[3],
+			'route'=>Init::$urlRoot.'/'.$pUrlDividida[3].'/seguindo',
 			'controller'=>'controllerAnimal',
 			'action'=>'seguindo',
 			'value'=>$pUrlDividida[3]

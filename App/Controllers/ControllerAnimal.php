@@ -18,12 +18,12 @@ class ControllerAnimal{
 		$modelAnimal = new ModelAnimal(Init::getDB());
 		$dadosAnimal = $modelAnimal->exibirDadosAnimal($nick);
 
+		//carregando lista de seguidores e seguidos
 		$modelInteracao = new ModelInteracao(Init::getDB());
-		//$seguidos = $modelInteracao->listarSeguidos($dadosAnimal['codigoDono']);
 		$seguidores = $modelInteracao->listarSeguidores($dadosAnimal['codigo']);
 		$seguindo = $modelInteracao->listarSeguidos($dadosAnimal['codigo']);
 		
-
+		//verificando se ha novas postagens
 		$modelStatus = new ModelStatus(Init::getDB());
 		if(!empty($_POST['novoPost'])){
 			$status = new Status();
@@ -52,13 +52,15 @@ class ControllerAnimal{
 		$cab->fechamento();
 	}
 
+	//metodo para visualizacao dos posts
 	public function verPost($codigo){
 
+		//preparacao dos dados para exibicao
 		$cab = new Cabecalho();
-
 		$modelPost = new ModelStatus(Init::getDB());
 		$post = $modelPost->exibirUmStatus($codigo);
 
+		//exibindo o post
 		$cab->abertura($post['nomeAnimal']);
 		include_once "../App/Views/exibePost.php";
 		$cab->fechamento();
@@ -77,6 +79,7 @@ class ControllerAnimal{
 		$modelStatus->inserirStatus($status);
 	}
 
+	//metodo para a exclusao de postagens
 	public function deletarPost($pCodigo){
 		$modelStatus = new ModelStatus(Init::getDB());
 		$post = $modelStatus->exibirUmStatus($pCodigo);
@@ -89,15 +92,26 @@ class ControllerAnimal{
 
 	}
 	
-	public function seguidores($pCodigo){
-		echo "funcao seguudires ".$pCodigo;
-//		$modelIntegracao = new ModelIntegracao(Init::getDB());
-//		$seguidores = $modelIntegracao->listarSeguidores($pCodigo);
+	//metodo para a listagem dos seguidores
+	public function seguidores($pNick){
+		
+		//carregando informacoes do animal e de seus seguidores
+		$modelAnimal = new ModelAnimal(Init::getDB());
+		$codigoAnimal = $modelAnimal->getCodFromNick($pNick);
+		$modelIntegracao = new ModelInteracao(Init::getDB());
+		$seguidores = $modelIntegracao->listarSeguidores($codigoAnimal);
 
-		//listarseguidores
+		//exibindo os dados
+		$cab = new Cabecalho();
+		$cab->abertura($pNick);
+		include_once "../App/Views/listarSeguidores.php";
+		$cab->fechamento();
 	}
 	
-	public function seguindo($pCodigo){
+	//metodo para a listagens dos seguidos
+	public function seguindo($pNick){
+		$modelAnimal = new ModelAnimal(Init::getDB());
+		echo "funcao seguindo  ".$modelAnimal->getCodFromNick($pNick);
 		//listarseguindo
 	}
 }
