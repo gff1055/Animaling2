@@ -89,12 +89,16 @@ class ControllerAnimal{
 
 	}
 	
-	public function seguidores(){
+	public function seguidores($pCodigo){
+		echo "funcao seguudires ".$pCodigo;
+//		$modelIntegracao = new ModelIntegracao(Init::getDB());
+//		$seguidores = $modelIntegracao->listarSeguidores($pCodigo);
 
+		//listarseguidores
 	}
 	
-	public function seguidos(){
-
+	public function seguindo($pCodigo){
+		//listarseguindo
 	}
 }
 

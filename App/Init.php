@@ -39,6 +39,20 @@ class Init{
 			'value'=>$pUrlDividida[3]
 		);
 
+		$arrayRotasAux['seguidores'] = array(
+			'route'=>Init::$urlRoot.'/'.$pUrlDividida[3],
+			'controller'=>'controllerAnimal',
+			'action'=>'seguidores',
+			'value'=>$pUrlDividida[3]
+		);
+
+		$arrayRotasAux['seguindo'] = array(
+			'route'=>Init::$urlRoot.'/'.$pUrlDividida[3],
+			'controller'=>'controllerAnimal',
+			'action'=>'seguindo',
+			'value'=>$pUrlDividida[3]
+		);
+
 		// Verifica se o endereco possui mais subdominios
 		if(count($pUrlDividida)==5)
 		$arrayRotasAux['verPostAnimal'] = array(
