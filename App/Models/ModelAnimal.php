@@ -99,6 +99,7 @@ class ModelAnimal
 		}
 	}
 
+	//metodo que retorna o codigo baseado no nick
 	public function getCodFromNick($pNick){
 		try{
 			$query = "select codigo from animal where nick = ?";

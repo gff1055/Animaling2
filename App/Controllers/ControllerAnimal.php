@@ -20,8 +20,10 @@ class ControllerAnimal{
 
 		//carregando lista de seguidores e seguidos
 		$modelInteracao = new ModelInteracao(Init::getDB());
-		$seguidores = $modelInteracao->listarSeguidores($dadosAnimal['codigo']);
-		$seguindo = $modelInteracao->listarSeguidos($dadosAnimal['codigo']);
+
+		//mostrando a quantidades de seguidores/seguidos
+		$numeroSeguidores = $modelInteracao->contSeguidores($dadosAnimal['codigo']);
+		$numeroSeguindo = $modelInteracao->contSeguidos($dadosAnimal['codigo']);
 		
 		//verificando se ha novas postagens
 		$modelStatus = new ModelStatus(Init::getDB());

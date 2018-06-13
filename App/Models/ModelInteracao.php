@@ -44,6 +44,27 @@ class ModelInteracao{
 
 	}
 
+	// metodo para contar seguidores
+	public function contSeguidores($pCodigoAnimal){
+		$query="select count(*) as quantidade from interacao where codseguido=?";
+		return $this->cont($query,$pCodigoAnimal);
+	}
+
+	//metodo para contagem de seguidos
+	public function contSeguidos($pCodigoAnimal){
+		$query="select count(*) as quantidade from interacao where codseguidor=?";
+		return $this->cont($query,$pCodigoAnimal);
+	}
+
+	// metodo de contagem
+	public function cont($query, $pCodigoAnimal){
+		$resultado = $this->conex->prepare($query);
+		$resultado->bindValue(1,$pCodigoAnimal);
+		$resultado->execute();
+		$quant = $resultado->fetch(\PDO::FETCH_ASSOC);
+		return $quant['quantidade'];
+	}
+
 	public function adicionarSeguidor($pInteracao){
 		
 		$resultado = null;
@@ -86,7 +107,7 @@ class ModelInteracao{
 
 	public function listarSeguidos($codigoAnimal){
 		$query = "
-				select count(*) as quantidadeSeguidos, i.codSeguido as seguido, a.nome as nomeSeguido
+				select i.codSeguido as seguido, a.nome as nomeSeguido
 				from interacao as i
 				inner JOIN animal as a
 				on i.codSeguidor=? and a.codigo=i.codSeguido";
