@@ -47,7 +47,7 @@ class ControllerAnimal{
 
 		//se o animal nao possui posts
 		else{
-			$cab->abertura("$nick - Página Inicial");
+			$cab->abertura($dadosAnimal['nome']." - Página Inicial");
 			include_once "../App/Views/formBusca.php";
 			include_once "../App/Views/animalIndex.php";
 		}
