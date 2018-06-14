@@ -99,22 +99,30 @@ class ControllerAnimal{
 		
 		//carregando informacoes do animal e de seus seguidores
 		$modelAnimal = new ModelAnimal(Init::getDB());
-		$codigoAnimal = $modelAnimal->getCodFromNick($pNick);
+		$dadosAnimal = $modelAnimal->exibirDadosAnimal($pNick);
 		$modelIntegracao = new ModelInteracao(Init::getDB());
-		$seguidores = $modelIntegracao->listarSeguidores($codigoAnimal);
+		$seguidores = $modelIntegracao->listarSeguidores($dadosAnimal['codigo']);
 
 		//exibindo os dados
 		$cab = new Cabecalho();
-		$cab->abertura($pNick);
+		$cab->abertura($dadosAnimal['nome']);
 		include_once "../App/Views/listarSeguidores.php";
 		$cab->fechamento();
 	}
 	
 	//metodo para a listagens dos seguidos
 	public function seguindo($pNick){
+		//carregando informacoes do animal e de seus seguidores
 		$modelAnimal = new ModelAnimal(Init::getDB());
-		echo "funcao seguindo  ".$modelAnimal->getCodFromNick($pNick);
-		//listarseguindo
+		$dadosAnimal = $modelAnimal->exibirDadosAnimal($pNick);
+		$modelIntegracao = new ModelInteracao(Init::getDB());
+		$seguidos = $modelIntegracao->listarSeguidos($dadosAnimal['codigo']);
+
+		//exibindo os dados
+		$cab = new Cabecalho();
+		$cab->abertura($dadosAnimal['nome']);
+		include_once "../App/Views/listarSeguidos.php";
+		$cab->fechamento();
 	}
 }
 

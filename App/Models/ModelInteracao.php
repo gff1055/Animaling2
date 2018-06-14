@@ -93,7 +93,7 @@ class ModelInteracao{
 
 	public function listarSeguidores($codigoAnimal){
 			$query = "
-				select i.codSeguidor as codigoSeguidor, a.nome as nomeSeguidor, a.descricao as descricaoSeguidor
+				select i.codSeguidor as codigoSeguidor, a.nome as nomeSeguidor, a.descricao as descricaoSeguidor, a.nick as nickAnimal
 				from interacao as i
 				inner JOIN animal as a
 				on i.codSeguido=? and a.codigo=i.codSeguidor";
@@ -107,7 +107,7 @@ class ModelInteracao{
 
 	public function listarSeguidos($codigoAnimal){
 		$query = "
-				select i.codSeguido as seguido, a.nome as nomeSeguido
+				select i.codSeguido as seguido, a.nome as nomeSeguido, a.descricao as descricaoSeguido, a.nick as nickAnimal
 				from interacao as i
 				inner JOIN animal as a
 				on i.codSeguidor=? and a.codigo=i.codSeguido";
