@@ -15,7 +15,9 @@ use App\Init;
 </div>
 
 <div>
-	<br><a href="../public/<?php echo $dadosAnimal['nick']?>/seguidores">Seguidores(<?php echo $numeroSeguidores;?>)</a><br>
+	<br>
+	publicacoes(<?php echo $numeroPosts?>)<br>
+	<a href="../public/<?php echo $dadosAnimal['nick']?>/seguidores">Seguidores(<?php echo $numeroSeguidores;?>)</a><br>
 	<a href="../public/<?php echo $dadosAnimal['nick']?>/seguindo">Seguindo(<?php echo $numeroSeguindo;?>)</a>
 </div>
 

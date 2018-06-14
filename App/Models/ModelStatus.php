@@ -56,6 +56,25 @@ class ModelStatus{
 		}
 	}
 
+	public function contPosts($pNick){
+		try{
+
+			$resultado=$this->conex->prepare("
+				select count(*) as quantidadePosts
+				from animal as a
+				inner join status as s 
+				on a.codigo=s.codigoAnimal
+				where a.nick=?");
+			$resultado->bindValue(1,$pNick);
+			$resultado->execute();
+
+			$todosStatus=$resultado->fetch(\PDO::FETCH_ASSOC);
+			return $todosStatus['quantidadePosts'];
+		}catch(PDOException $e){
+			return  "ERRO: ".$erro->getmessage();
+		}
+	}
+
 	public function exibirUmStatus($codigoStatus){
 		try{
 			$resultado=$this->conex->prepare("

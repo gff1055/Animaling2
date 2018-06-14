@@ -37,6 +37,7 @@ class ControllerAnimal{
 
 		//EXIBINDO TODOS OS POSTS
 		$posts = $modelStatus->exibirTodosStatus($nick);
+		$numeroPosts = $modelStatus->contPosts($nick);
 		
 		//se o animal possuir posts
 		if($dadosAnimal==ModelAnimal::NO_RESULTS){
